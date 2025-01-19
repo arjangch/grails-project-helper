@@ -1,6 +1,6 @@
 # grails-project-helper
 
-Purpose of this project is to help Grails bigginer. To show developer tip and tricks, plugin implementation, 
+Purpose of this project is to help Grails bigginer. To show developer tips and tricks, plugin implementation, 
 internal commands, config files, etc. 
 
 ## Minimum System Requirements
@@ -21,3 +21,4 @@ Examples may not be runnable.
 
 We will be using [SDKMan](https://sdkman.io/) in all examples. 
 
+[Example1](example1.md): Contains basic Grails tips and tricks. 
