@@ -1,23 +1,58 @@
-## Grails 7.0.0-M1 Documentation
+## Example 1
 
-- [User Guide](https://docs.grails.org/7.0.0-M1/guide/index.html)
-- [API Reference](https://docs.grails.org/7.0.0-M1/api/index.html)
-- [Grails Guides](https://guides.grails.org/index.html)
----
+## Working with Application Yaml
+See [application.yml](example1/grails-app/conf/application.yml)
 
-## Feature asset-pipeline-grails documentation
+### Variables
+#### Global credentials
+Sometimes it doesn't depend on which environment we are running. These variables are common between all of them. See myGlobalVariables 
+Get values out of yml config
+```groovy
+class BootStrap {
+    def grailsApplication // inject 
+    def init = { servletContext ->
+        //Global Variables
+        def username = grailsApplication.config.myGlobalVariables.username
+        username = grailsApplication.config.get("myGlobalVariables.username")
+        username = grailsApplication.config.myGlobalVariables.get("username")
+    }
+}
+```
 
-- [Grails Asset Pipeline Core documentation](https://github.com/bertramdev/asset-pipeline#readme)
+#### Environment based credentials
+Sometimes we want to setup a global variable that are used regardless of environment our code is running. As example shows Groovy 
+can get proper variable data type. 
+```groovy
+class BootStrap {
+    def grailsApplication // inject 
+    def init = { servletContext ->
+        // Environment variables
+        def myEnvironmentVariables = grailsApplication.config.get("myEnvironmentVariables")
+        boolean testmode = grailsApplication.config.get("testMode")
+        int fileage = grailsApplication.config.get("fileAge")
+    }
+}
+```
 
-## Feature geb-with-testcontainers documentation
+#### Change log level
+At every environment log level can be changed
+```yaml
+  development:
+    logging.level.com.arjang: INFO
+```
 
-- [Grails Geb Functional Testing for Grails with Testcontainers documentation](https://github.com/grails/geb#readme)
+### Application Server settings 
+We can chang server port and context for each environment
+```yaml
+    server:
+      port: 8081
+      servlet:
+        context-path: '/example1'
+```
 
-- [https://www.gebish.org/manual/current/](https://www.gebish.org/manual/current/)
 
-## Feature scaffolding documentation
-
-- [Grails Scaffolding Plugin documentation](https://docs.grails.org/7.0.0-M1/guide/scaffolding.html)
-
-- [https://github.com/gpc/fields#readme](https://github.com/gpc/fields#readme)
-
+### Data Source 
+#### MySql
+#### Other Settings
+#### H2
+#### Multiple Data source 
