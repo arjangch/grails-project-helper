@@ -47,7 +47,7 @@ Examples may not be runnable.
 The easiest way to setup Grails is using [sdkamn](https://sdkman.io/).
 Then add the file ".sdkmanrc" into every root directory of a project.
 Every time entring the directory it will load tech stack listed in .sdkman.
-Essentially you can run multiple different versions in the same local environment. For example this .sdkman
+Essentially you can run multiple different versions in the same local environment. For example this .sdkmanrc
 ```groovy
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
@@ -57,7 +57,7 @@ groovy=4.0.24
 grails=7.0.0-M1
 ```
 
-[README.md](example1/README.md): Contains basic Grails tips and tricks. 
+[Example1](example1/README.md): Basic Grails tips and tricks. 
 
-[Example2](example2.md): Contains examples of Oauth2. 
+[Example2](example2.md): Connect with Oauth2 and JWT. 
 

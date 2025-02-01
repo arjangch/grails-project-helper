@@ -76,6 +76,13 @@
                     </g:each>
                 </ul>
             </div>
+
+            <div id="otherthings" role="navigation">
+                <h2>Tips and Tricks:</h2>
+                <ul>
+                    <li class="controller"><g:link controller="employee" action="printMemInfo">Print Mem Info</g:link></li>
+                </ul>
+            </div>
         </section>
     </div>
 </div>
