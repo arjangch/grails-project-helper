@@ -47,6 +47,11 @@ class BootStrap {
 }
 ```
 
+In GSP files get values from yml file. See file /view/index.gsp.  
+```groovy
+${grailsApplication.config.tomcatDirectoryPath}
+```
+
 #### Change log level
 Running environment log level can be changed
 ```yaml
@@ -145,7 +150,7 @@ class Students {
 For example in the above code we don't want versioning because this table is also used in other applications. 
 
 #### Other Database Settings
-Usually Production DB needs there are other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html) 
+Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html) 
 
 ```yaml
   production:
