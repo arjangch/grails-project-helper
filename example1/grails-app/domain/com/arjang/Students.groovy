@@ -7,8 +7,7 @@ class Students {
 
     static constraints = {
     }
+
     static mapping = {
-        version false
-        datasource 'myotherdb'
     }
 }

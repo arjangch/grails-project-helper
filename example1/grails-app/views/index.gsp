@@ -80,7 +80,8 @@
             <div id="otherthings" role="navigation">
                 <h2>Tips and Tricks:</h2>
                 <ul>
-                    <li class="controller"><g:link controller="employee" action="printMemInfo">Print Mem Info</g:link></li>
+                    <li class="controller">Reading tomcatDirectoryPath from application.yml file: ${grailsApplication.config.tomcatDirectoryPath}</li>
+                    <li class="controller"><g:link controller="employee" action="printMemInfo">Print Memory Used Info</g:link></li>
                 </ul>
             </div>
         </section>
