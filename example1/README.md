@@ -14,7 +14,7 @@ myGlobalVariables:
 ```
 ```groovy
 class BootStrap {
-    def grailsApplication // inject 
+    def grailsApplication // inject
     def init = { servletContext ->
         //Global Variables
         def username = grailsApplication.config.myGlobalVariables.username
@@ -25,8 +25,8 @@ class BootStrap {
 ```
 
 #### Environment Variables
-Variable that are dependent on environment code is running. As example shows Groovy 
-can get proper variable data type. 
+Variable that are dependent on environment code is running. As example shows Groovy
+can get proper variable data type.
 ```yaml
 environments:
   development:
@@ -37,7 +37,7 @@ environments:
 ```
 ```groovy
 class BootStrap {
-    def grailsApplication // inject 
+    def grailsApplication // inject
     def init = { servletContext ->
         // Environment variables
         def myEnvironmentVariables = grailsApplication.config.get("myEnvironmentVariables")
@@ -47,7 +47,7 @@ class BootStrap {
 }
 ```
 
-In GSP files get values from yml file. See file /view/index.gsp.  
+In GSP files get values from yml file. See file /view/index.gsp.
 ```groovy
 ${grailsApplication.config.tomcatDirectoryPath}
 ```
@@ -59,8 +59,8 @@ Running environment log level can be changed
     logging.level.com.arjang: INFO
 ```
 
-### Application Server settings 
-Running server port and context for each environment
+### Application Server settings
+Server port and context for each environment can be set.
 ```yaml
     server:
       port: 8081
@@ -68,10 +68,9 @@ Running server port and context for each environment
         context-path: '/example1'
 ```
 
-### Data Source 
-
+### Data Source
 #### H2
-By default, there is an H2 database already installed. To disable it, comment out or change password in yml 
+By default, there is an H2 database installed you can disable it. Comment out or change password in yml
 ```yaml
 dataSource:
   driverClassName: org.h2.Driver
@@ -80,21 +79,27 @@ dataSource:
   pooled: true
   jmxExport: true
 ```
-To increase security, use different credentials for each environment. 
+To increase security use different credentials in each environment.
 ```yaml
 environments:
   development:
       dataSource:
-          driverClassName: org.h2.Driver
+          dbCreate: create-drop
           username: sa
           password: ''
           pooled: true
           jmxExport: true
-          dbCreate: create-drop
           url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  production:
+      dataSource:
+          dbCreate: none
+          username: sa
+          password: ''
+          pooled: true
+          jmxExport: false
+          url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 ```
-Also, make sure [console](http://localhost:8081/example1/h2-console/) is disabled for production. 
-[See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
+Enable H2 database [console](http://localhost:8081/example1/h2-console/) for each environment in yml. [See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
 ```yaml
 environments:
     development:
@@ -103,8 +108,9 @@ environments:
         spring.h2.console.enabled: false
 ```
 
+
 #### MySql
-Other databases need to be injected. For example, add the following to build.gradle
+Other databases need to be injected. For example, add following to build.gradle
 ```groovy
 dependencies {
     // mysql 8
@@ -112,7 +118,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
 }
 ```
-And then in yml setup connection 
+Then in yml setup connection to DB
 ```yaml
 environments:
   development:
@@ -124,11 +130,11 @@ environments:
           username: "exampleAdmin"
           password: "examplePassword"
 ```
-#### Multiple Data source 
-Multiple data sources can be configured.
+#### Multiple Data source
+Multiple data sources can be configured..
 ```yaml
 environments:
-    development:    
+    development:
         dataSources:
           myotherdb:
             dbCreate: update
@@ -138,19 +144,33 @@ environments:
             username: "exampleAdmin"
             password: "examplePassword"
 ```
-Then map the domain class to use the secondary DB. 
+Then map the domain class to use the secondary DB.
 ```groovy
-class Students {
+class Employee {
     static mapping = {
         version false
         datasource 'myotherdb'
     }
 }
 ```
-For example, in the above code, we don't want to version because this table is also used in other applications. 
+For example in the above code we don't want versioning because this table is also used in other applications.
+
+To work with the secondary DB in the controller add transactional to class.
+```groovy
+@Transactional(readOnly = true, connection = "myotherdb")
+class EmployeeController {
+```
+or add transactional to individual method.
+```groovy
+@Transactional(readOnly = true, connection = "myotherdb")
+def index(Integer max) {
+```
+Also we can use the secondary DB in the service class or just in section of a code block. See [Grails Documentation](https://docs.grails.org/latest/guide/services.html#multipleDataSources)
+
+
 
 #### Other Database Settings
-Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html) 
+Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html)
 
 ```yaml
   production:
@@ -177,5 +197,5 @@ Usually Production DB needs other setting to manage high volume and high availab
         defaultTransactionIsolation: 2
 ```
 
-## Tips and Tricks 
+## Tips and Tricks
 - [Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)

@@ -2,9 +2,10 @@ package com.arjang
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.gorm.transactions.Transactional
 
+@Transactional(readOnly = true, connection = "myotherdb")
 class EmployeeController {
-
     EmployeeService employeeService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -12,13 +13,6 @@ class EmployeeController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond employeeService.list(params), model:[employeeCount: employeeService.count()]
-
-//        log.info "========" + Students.findAll()
-//        Students.withNewSession {
-//            log.info "========" +
-//        }
-//        redirect(uri: "/")
-
     }
 
     def printMemInfo() {

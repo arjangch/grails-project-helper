@@ -22,7 +22,7 @@ apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.grails-gsp"
 
 group = "com.arjang"
-
+version = "0.1"
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/core/" }

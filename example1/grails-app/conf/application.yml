@@ -51,12 +51,10 @@ grails:
       - text/xml
       - application/xml
 
-#dataSource:
-#  driverClassName: org.h2.Driver
-#  username: sa
-#  password: ''
-#  pooled: true
-#  jmxExport: true
+dataSource:
+ driverClassName: org.h2.Driver
+ pooled: true
+ jmxExport: true
 
 hibernate:
   cache:
@@ -82,23 +80,16 @@ environments:
       servlet:
         context-path: '/example1'
     dataSource:
-      driverClassName: org.h2.Driver
-      username: sa
-      password: ''
-      pooled: true
-      jmxExport: true
       dbCreate: create-drop
+      username: adminExample1
+      password: 'adminExample1'
       url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     dataSources:
       myotherdb:
-#        hibernate:
-#          enable_lazy_load_no_trans: true
         dbCreate: create-drop
-        driverClassName: "com.mysql.cj.jdbc.Driver"
-        dialect: "org.hibernate.dialect.MySQL8Dialect"
-        url: "jdbc:mysql://localhost:3306/example1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false"
-        username: "example1Admin"
-        password: "example1Password"
+        username: 'adminSeconddb1'
+        password: 'adminSeconddb1'
+        url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 
   Staging:
     logging.level.com.arjang: DEBUG
