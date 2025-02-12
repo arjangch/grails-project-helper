@@ -1,0 +1,147 @@
+info:
+  app:
+    name: '@info.app.name@'
+    version: '@info.app.version@'
+    grailsVersion: '@info.app.grailsVersion@'
+grails:
+  codegen:
+    defaultPackage: com.arjang
+  profile: web
+  views:
+    default:
+      codec: html
+    gsp:
+      encoding: UTF-8
+      htmlcodec: xml
+      codecs:
+        expression: html
+        scriptlet: html
+        taglib: none
+        staticparts: none
+  mime:
+    disable:
+      accept:
+        header:
+          userAgents:
+          - Gecko
+          - WebKit
+          - Presto
+          - Trident
+    types:
+      all: '*/*'
+      atom: application/atom+xml
+      css: text/css
+      csv: text/csv
+      form: application/x-www-form-urlencoded
+      html:
+      - text/html
+      - application/xhtml+xml
+      js: text/javascript
+      json:
+      - application/json
+      - text/json
+      multipartForm: multipart/form-data
+      pdf: application/pdf
+      rss: application/rss+xml
+      text: text/plain
+      hal:
+      - application/hal+json
+      - application/hal+xml
+      xml:
+      - text/xml
+      - application/xml
+
+#dataSource:
+#  driverClassName: org.h2.Driver
+#  username: sa
+#  password: ''
+#  pooled: true
+#  jmxExport: true
+
+hibernate:
+  cache:
+    queries: false
+    use_second_level_cache: false
+    use_query_cache: false
+
+myGlobalVariables:
+  username: 'adminu'
+  password: 'adminp'
+  other: 'somethingelse'
+
+environments:
+  development:
+    logging.level.com.arjang: INFO
+    spring.h2.console.enabled: true
+    myEnvironmentVariables: 'This is Dev variable'
+    tomcatDirectoryPath: '/tmp/grails-sample/'
+    testMode: true
+    fileAge: 30
+    server:
+      port: 8081
+      servlet:
+        context-path: '/example1'
+    dataSource:
+      driverClassName: org.h2.Driver
+      username: sa
+      password: ''
+      pooled: true
+      jmxExport: true
+      dbCreate: create-drop
+      url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    dataSources:
+      myotherdb:
+#        hibernate:
+#          enable_lazy_load_no_trans: true
+        dbCreate: create-drop
+        driverClassName: "com.mysql.cj.jdbc.Driver"
+        dialect: "org.hibernate.dialect.MySQL8Dialect"
+        url: "jdbc:mysql://localhost:3306/example1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false"
+        username: "example1Admin"
+        password: "example1Password"
+
+  Staging:
+    logging.level.com.arjang: DEBUG
+    myEnvironmentVariables: 'This is Staging variable'
+    tomcatDirectoryPath: '/opt/stage_tomcat/'
+    testMode: true
+    fileAge: 30
+    dataSource:
+      dbCreate: create-drop
+      url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  test:
+    myEnvironmentVariables: 'This is Test variable'
+    tomcatDirectoryPath: '/opt/stage_tomcat/'
+    testMode: true
+    fileAge: 30
+    dataSource:
+      dbCreate: update
+      url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  production:
+    logging.level.com.arjang: ERROR
+    myEnvironmentVariables: 'This is Prod variable'
+    tomcatDirectoryPath: '/opt/prod_tomcat/'
+    testMode: true
+    fileAge: 30
+    dataSource:
+      dbCreate: none
+      url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+      properties:
+        jmxEnabled: true
+        initialSize: 5
+        maxActive: 50
+        minIdle: 5
+        maxIdle: 25
+        maxWait: 10000
+        maxAge: 600000
+        timeBetweenEvictionRunsMillis: 5000
+        minEvictableIdleTimeMillis: 60000
+        validationQuery: SELECT 1
+        validationQueryTimeout: 3
+        validationInterval: 15000
+        testOnBorrow: true
+        testWhileIdle: true
+        testOnReturn: false
+        jdbcInterceptors: ConnectionState
+        defaultTransactionIsolation: 2
+
