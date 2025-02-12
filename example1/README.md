@@ -71,7 +71,7 @@ Running server port and context for each environment
 ### Data Source 
 
 #### H2
-By default, there is an H2 database installed you can disable it. Comment out or change password in yml 
+By default, there is an H2 database already installed. To disable it, comment out or change password in yml 
 ```yaml
 dataSource:
   driverClassName: org.h2.Driver
@@ -80,7 +80,7 @@ dataSource:
   pooled: true
   jmxExport: true
 ```
-To increase security move setting to Development environment. 
+To increase security, use different credentials for each environment. 
 ```yaml
 environments:
   development:
@@ -93,7 +93,8 @@ environments:
           dbCreate: create-drop
           url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 ```
-Enable H2 database console in yml and go to [Console](http://localhost:8081/example1/h2-console/).
+Also, make sure [console](http://localhost:8081/example1/h2-console/) is disabled for production. 
+[See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
 ```yaml
 environments:
     development:
@@ -101,10 +102,9 @@ environments:
     production:
         spring.h2.console.enabled: false
 ```
-[See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
 
 #### MySql
-Other databases need to be injected. For example, add following to build.gradle
+Other databases need to be injected. For example, add the following to build.gradle
 ```groovy
 dependencies {
     // mysql 8
@@ -112,7 +112,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
 }
 ```
-Then in yml setup connection to DB 
+And then in yml setup connection 
 ```yaml
 environments:
   development:
@@ -125,7 +125,7 @@ environments:
           password: "examplePassword"
 ```
 #### Multiple Data source 
-Multilple data sources can be configured. Usually.
+Multiple data sources can be configured.
 ```yaml
 environments:
     development:    
@@ -147,7 +147,7 @@ class Students {
     }
 }
 ```
-For example in the above code we don't want versioning because this table is also used in other applications. 
+For example, in the above code, we don't want to version because this table is also used in other applications. 
 
 #### Other Database Settings
 Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html) 
