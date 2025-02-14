@@ -66,7 +66,7 @@ This has been depricated in Gradle 8
 ```groovy
 ${grailsApplication.config.myEnvironmentVariables}
 ```
-Use this insetead
+Use this instead
 ```groovy
 grailsApplication.config.get("myEnvironmentVariables")
 ```
