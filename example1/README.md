@@ -166,10 +166,31 @@ or add transactional to individual method.
 def index(Integer max) {
 ```
 Also we can use the secondary DB in the service class or just in section of a code block. See [Grails Documentation](https://docs.grails.org/latest/guide/services.html#multipleDataSources)
+```groovy
+def usingTransaction() {
+    Employee.withTransaction {
+        def oneemployee = new Employee(name: "Louis2", lastname: "mandy2", employeeId: 22222, employeeNotes: "my 2 robot112").save(flush: true, failOnError: true)
+        log.info '-2.1--=' + Employee.list()
+    }
+    return "back from usingTransaction"
+}
 
+def createNewSession(){
+    Employee.withNewSession { session ->
+        log.info '-2.2--='+Employee.list()
+    }
+    return "back from createNewSession"
+}
 
+def usingSession(){
+    Employee.withSession { session ->
+        log.info '-3.2--='+Employee.list()
+    }
+    return "back from usingSession"
+}
+```
 
-#### Other Database Settings
+#### DataSource Properties
 Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html)
 
 ```yaml
