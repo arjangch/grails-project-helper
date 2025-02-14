@@ -195,7 +195,6 @@ environments:
         spring.h2.console.enabled: false
 ```
 
-
 #### MySql
 Other databases need to be injected. For example, add following to build.gradle
 ```groovy
