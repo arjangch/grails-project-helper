@@ -7,7 +7,7 @@
     <asset:javascript src="jquery-3.7.1.min.js"/>
     <script>
         $(function () {
-            $("#buildinfocontent").load("buildinfo");
+            $("#buildinfocontent").load("buildinfo")
         });
     </script>
 

@@ -43,43 +43,49 @@ Other gradle commands.
 ## Running System Info 
 See example running in [index.gsp](grails-app/views/index.gsp)
 
-#### Memory information 
+#### Runtime Memory information 
 TODO
 [Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
 
-#### Application name 
+#### Access Configuration Information
+Also read 
+Application name
 ```groovy 
 ${grails.util.Metadata.current.getApplicationName()}
 ```
-#### Application Version
+Application Version
 ```groovy
 ${grails.util.Metadata.current.getApplicationVersion()}
 ```
-#### Environment name
+Environment name
 ```groovy
 ${grails.util.Environment.current.name}
 ```
-#### Java version 
-```groovy
-${System.getProperty('java.version')}
-```
-#### Groovy version 
-```groovy
-${GroovySystem.getVersion()}
-```
-#### Grails version
-```groovy
-${grailsApplication.metadata.getGrailsVersion()}
-```
-#### Variables in yml config
+#### Environment Configuration variables
 This has been depricated in Gradle 8
 ```groovy
 ${grailsApplication.config.myEnvironmentVariables}
 ```
-Use this insetead 
+Use this insetead
 ```groovy
 grailsApplication.config.get("myEnvironmentVariables")
 ```
+
+#### Access System Information
+Java version 
+```groovy
+${System.getProperty('java.version')}
+```
+Groovy version 
+```groovy
+${GroovySystem.getVersion()}
+```
+Grails version
+```groovy
+${grailsApplication.metadata.getGrailsVersion()}
+```
+
+Also see https://docs.grails.org/7.0.0-M1/guide/conf.html
 
 ## Working with Application Yaml
 See [application.yml](grails-app/conf/application.yml)
@@ -314,7 +320,7 @@ Usually Production DB needs other setting to manage high volume and high availab
 ```javascript
     <script>
         $(function () {
-            $("#buildinfocontent").load("buildinfo");
+            $("#buildinfocontent").load("buildinfo")
         });
     </script>
 ```
