@@ -1,11 +1,47 @@
 ## Example 1
 
-## working with Gradle 8
-### version 
+## Gradle 8
+
+## Command Lines
+Build war files
+```csh 
+gradle -Dgrails.env=dev assemble
+gradle -Dgrails.env=prod assemble
+```
+If custom environment is setup in yml file 
+```csh
+gradle -Dgrails.env=staging assemble
+gradle -Dgrails.env=preproduction assemble
+```
+Running app locally
+```csh 
+./grailsw run-app
+./grailsw -Dgrails.env=staging run-app
+./grailsw -Dgrails.env=preproduction run-app
+```
+or running app locally with gradle 
+```csh 
+./gradlew bootRun 
+./gradlew -Dgrails.env=staging  bootRun
+```
+Run specific commends grails with gradle 
+```csh 
+./gradlew runCommand -Pargs="generate-all com.micompany.MyStaff"
+./gradlew runCommand -Pargs="create-domain-class com.micompany.MyStaff"
+./grailsw create-domain-class com.micompany.Products
+```
+Upgrade wrapper
+```csh
+./grailsw update-wrapper
+```
+Other gradle commands. 
+```csh
+./gradlew tasks
+./gradlew publishToMavenLocal 
+```
 
 ## Running System Info 
 See example running in [index.gsp](grails-app/views/index.gsp)
-
 
 #### Memory information 
 TODO
