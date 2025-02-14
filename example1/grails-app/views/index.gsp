@@ -3,7 +3,14 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Example 1</title>
+    <asset:javascript src="jquery-3.7.1.min.js"/>
+    <script>
+        $(function () {
+            $("#buildinfocontent").load("buildinfo");
+        });
+    </script>
+
 </head>
 <body>
 <content tag="nav">
@@ -91,7 +98,8 @@
                     <li>Grails Version: ${grailsApplication.metadata.getGrailsVersion()}</li>
                     <li>---</li>
                     <li>environmment = ${grails.util.Metadata.current.getProperties()}</li>
-                    <div id="buildinfocontent"></div>
+                    <li>---</li>
+                    <div id="buildinfocontent">test</div>
                 </ul>
             </div>
 

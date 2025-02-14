@@ -5,24 +5,24 @@
 
 ## Running System Info 
 See example running in [index.gsp](grails-app/views/index.gsp)
+
+
 #### Memory information 
+TODO
 [Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
 
 #### Application name 
 ```groovy 
 ${grails.util.Metadata.current.getApplicationName()}
 ```
-
 #### Application Version
 ```groovy
 ${grails.util.Metadata.current.getApplicationVersion()}
 ```
-
 #### Environment name
 ```groovy
 ${grails.util.Environment.current.name}
 ```
-
 #### Java version 
 ```groovy
 ${System.getProperty('java.version')}
@@ -31,7 +31,6 @@ ${System.getProperty('java.version')}
 ```groovy
 ${GroovySystem.getVersion()}
 ```
-
 #### Grails version
 ```groovy
 ${grailsApplication.metadata.getGrailsVersion()}
@@ -204,12 +203,12 @@ For example in the above code we don't want versioning because this table is als
 To work with the secondary DB in the controller add transactional to class.
 ```groovy
 @Transactional(readOnly = true, connection = "myotherdb")
-class EmployeeController {
+class EmployeeController {}
 ```
 or add transactional to individual method.
 ```groovy
 @Transactional(readOnly = true, connection = "myotherdb")
-def index(Integer max) {
+def index(Integer max) { }
 ```
 Also we can use the secondary DB in the service class or just in section of a code block. See [Grails Documentation](https://docs.grails.org/latest/guide/services.html#multipleDataSources)
 ```groovy
@@ -263,6 +262,28 @@ Usually Production DB needs other setting to manage high volume and high availab
         jdbcInterceptors: ConnectionState
         defaultTransactionIsolation: 2
 ```
-
-
+## Others
+### Inject text file into GSP
+* Add following to UrlMappings.goovy 
+```groovy
+"/buildinfo"(view: "/buildinfo")
+```
+* Add file buildinfo.gsp to /views/ directory 
+* Add jquery-3.7.1.min.js to /assets/javascripts/
+* Add following to gsp page
+```html
+<asset:javascript src="jquery-3.7.1.min.js"/>
+```
+* Add a JS function in < header > to load the file 
+```javascript
+    <script>
+        $(function () {
+            $("#buildinfocontent").load("buildinfo");
+        });
+    </script>
+```
+* Add < div > to include content of the file. 
+```html
+<div id="buildinfocontent"></div>
+```
 
