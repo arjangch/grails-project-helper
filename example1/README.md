@@ -1,7 +1,53 @@
 ## Example 1
 
+## working with Gradle 8
+### version 
+
+## Running System Info 
+See example running in [index.gsp](grails-app/views/index.gsp)
+#### Memory information 
+[Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
+
+#### Application name 
+```groovy 
+${grails.util.Metadata.current.getApplicationName()}
+```
+
+#### Application Version
+```groovy
+${grails.util.Metadata.current.getApplicationVersion()}
+```
+
+#### Environment name
+```groovy
+${grails.util.Environment.current.name}
+```
+
+#### Java version 
+```groovy
+${System.getProperty('java.version')}
+```
+#### Groovy version 
+```groovy
+${GroovySystem.getVersion()}
+```
+
+#### Grails version
+```groovy
+${grailsApplication.metadata.getGrailsVersion()}
+```
+#### Variables in yml config
+This has been depricated in Gradle 8
+```groovy
+${grailsApplication.config.myEnvironmentVariables}
+```
+Use this insetead 
+```groovy
+grailsApplication.config.get("myEnvironmentVariables")
+```
+
 ## Working with Application Yaml
-See [application.yml](example1/grails-app/conf/application.yml)
+See [application.yml](grails-app/conf/application.yml)
 
 ### Variables
 #### Global credentials
@@ -218,5 +264,5 @@ Usually Production DB needs other setting to manage high volume and high availab
         defaultTransactionIsolation: 2
 ```
 
-## Tips and Tricks
-- [Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
+
+

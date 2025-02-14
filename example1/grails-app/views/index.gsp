@@ -77,6 +77,24 @@
                 </ul>
             </div>
 
+            <div id="RunningSystemInfo" role="navigation">
+                <h2>Running System Info</h2>
+                <ul style="list-style-type: none;">
+                    <li>App fullname: ${grails.util.Metadata.current.getApplicationName()}</li>
+                    <li>Build Date: ${grails.util.Metadata.current.getApplicationVersion()}</li>
+                    <li>Build Environment: ${grails.util.Environment.current.name}</li>
+                    <li>---</li>
+                    <li>TestMode: ${grailsApplication.config.myEnvironmentVariables}</li>
+                    <li>---</li>
+                    <li>Groovy Version: ${GroovySystem.getVersion()}</li>
+                    <li>JVM Version: ${System.getProperty('java.version')}</li>
+                    <li>Grails Version: ${grailsApplication.metadata.getGrailsVersion()}</li>
+                    <li>---</li>
+                    <li>environmment = ${grails.util.Metadata.current.getProperties()}</li>
+                    <div id="buildinfocontent"></div>
+                </ul>
+            </div>
+
             <div id="otherthings" role="navigation">
                 <h2>Tips and Tricks:</h2>
                 <ul>
