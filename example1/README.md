@@ -85,9 +85,9 @@ Grails version
 ${grailsApplication.metadata.getGrailsVersion()}
 ```
 
-Also see https://docs.grails.org/7.0.0-M1/guide/conf.html
+Also see [Grails config](https://docs.grails.org/7.0.0-M1/guide/conf.html) 
 
-## Working with Application Yaml
+## application.yml Configuration File
 See [application.yml](grails-app/conf/application.yml)
 
 ### Variables
@@ -112,15 +112,15 @@ class BootStrap {
 ```
 
 #### Environment Variables
-Variable that are dependent on environment code is running. As example shows Groovy
+Variable that are dependent on running environment. As example shows Groovy
 can get proper variable data type.
 ```yaml
 environments:
   development:
     myEnvironmentVariables: 'This is Dev variable'
     tomcatDirectoryPath: '/opt/stage_tomcat/'
-    testMode: true
-    fileAge: 30
+    testMode: true //For development runs as test
+    fileAge: 30 //different for each environment
 ```
 ```groovy
 class BootStrap {
@@ -133,7 +133,6 @@ class BootStrap {
     }
 }
 ```
-
 In GSP files get values from yml file. See file /view/index.gsp.
 ```groovy
 ${grailsApplication.config.tomcatDirectoryPath}
@@ -146,7 +145,7 @@ Running environment log level can be changed
     logging.level.com.arjang: INFO
 ```
 
-### Application Server settings
+#### Application Server settings
 Server port and context for each environment can be set.
 ```yaml
     server:
