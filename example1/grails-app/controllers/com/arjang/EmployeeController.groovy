@@ -20,7 +20,7 @@ class EmployeeController {
         def message = "hellow there".indexOf("w")
         // get Runtime instance
         Runtime instance = Runtime.getRuntime();
-        System.out.println("***** Heap utilization statistics [MB] *****\n");
+        log.info("***** Heap utilization statistics [MB] *****\n");
 
         // available memory
         log.info("Available Memory: " + instance.availableProcessors());
@@ -35,7 +35,7 @@ class EmployeeController {
 
         // Maximum available memory
         log.info("Max Memory: " + instance.maxMemory() / mb);
-        
+
         redirect(uri: "/")
     }
 

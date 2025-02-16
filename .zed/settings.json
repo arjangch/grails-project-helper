@@ -24,5 +24,15 @@
       "**/*.kdbx",
       "**/ownCloud/**"
     ]
-  }
+  },
+  "file_scan_exclusions": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/*.yml",
+    "**/*.kdbx",
+    "**/ownCloud/**"
+  ]
 }
