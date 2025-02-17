@@ -9,6 +9,7 @@ class Employee {
     static constraints = {
     }
     static mapping = {
+        datasource 'myotherdb'
         employeeNotes type: "text"
     }
 }

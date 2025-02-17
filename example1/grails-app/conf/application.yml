@@ -84,12 +84,6 @@ environments:
       username: adminExample1
       password: 'adminExample1'
       url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-    dataSources:
-      myotherdb:
-        dbCreate: create-drop
-        username: 'adminSeconddb1'
-        password: 'adminSeconddb1'
-        url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 
   Staging:
     logging.level.com.arjang: DEBUG

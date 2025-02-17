@@ -1,14 +1,13 @@
 package com.arjang
 
-class Employee {
+class Students {
     String name
     String lastname
-    int empoyeeId
-    String employeeNotes
+    int studentId
 
     static constraints = {
     }
+
     static mapping = {
-        employeeNotes type: "text"
     }
 }
