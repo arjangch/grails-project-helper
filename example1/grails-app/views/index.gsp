@@ -84,6 +84,14 @@
                 </ul>
             </div>
 
+            <div id="otherthings" role="navigation">
+                <h2>Tips and Tricks:</h2>
+                <ul>
+                    <li class="controller">Reading tomcatDirectoryPath from application.yml file: ${grailsApplication.config.tomcatDirectoryPath}</li>
+                    <li class="controller"><g:link controller="employee" action="printMemInfo">Print Memory Used Info</g:link></li>
+                </ul>
+            </div>
+
             <div id="RunningSystemInfo" role="navigation">
                 <h2>Running System Info</h2>
                 <ul style="list-style-type: none;">
@@ -103,13 +111,7 @@
                 </ul>
             </div>
 
-            <div id="otherthings" role="navigation">
-                <h2>Tips and Tricks:</h2>
-                <ul>
-                    <li class="controller">Reading tomcatDirectoryPath from application.yml file: ${grailsApplication.config.tomcatDirectoryPath}</li>
-                    <li class="controller"><g:link controller="employee" action="printMemInfo">Print Memory Used Info</g:link></li>
-                </ul>
-            </div>
+
         </section>
     </div>
 </div>

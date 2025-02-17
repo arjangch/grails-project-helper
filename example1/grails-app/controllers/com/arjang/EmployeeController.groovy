@@ -22,8 +22,10 @@ class EmployeeController {
         Runtime instance = Runtime.getRuntime();
         log.info("***** Heap utilization statistics [MB] *****\n");
 
-        // available memory
-        log.info("Available Memory: " + instance.availableProcessors());
+        // number of core processors.
+        log.info("Available Processors: " + instance.availableProcessors());
+
+        // total available memory
         log.info("Total Memory: " + instance.totalMemory() / mb);
 
         // free memory
@@ -35,6 +37,7 @@ class EmployeeController {
 
         // Maximum available memory
         log.info("Max Memory: " + instance.maxMemory() / mb);
+
 
         redirect(uri: "/")
     }
