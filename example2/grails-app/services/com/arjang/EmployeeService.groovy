@@ -1,7 +1,6 @@
 package com.arjang
 
 import grails.gorm.services.Service
-import com.arjang.Employee
 
 @Service(Employee)
 interface EmployeeService {
