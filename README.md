@@ -57,6 +57,7 @@ groovy=4.0.24
 grails=7.0.0-M1
 ```
 
-[Example1](example1/README.md): Basic Grails tips and tricks.
-[Example2](example2/README.md): DataSources.
-[Example3](example3.md): Connect with Oauth2 and JWT.
+- [Example1](example1/README.md): Basic Grails tips and tricks.
+- [Example2](example2/README.md): DataSources.
+- [Example3](example3.md): Connect with Oauth2 and JWT.
+
