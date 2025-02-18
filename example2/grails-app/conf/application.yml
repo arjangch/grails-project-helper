@@ -4,9 +4,6 @@ info:
     version: '@info.app.version@'
     grailsVersion: '@info.app.grailsVersion@'
 grails:
-  codegen:
-    defaultPackage: com.arjang
-  profile: web
   views:
     default:
       codec: html
@@ -18,6 +15,9 @@ grails:
         scriptlet: html
         taglib: none
         staticparts: none
+  codegen:
+    defaultPackage: com.arjang
+  profile: web
   mime:
     disable:
       accept:
@@ -52,9 +52,9 @@ grails:
       - application/xml
 
 dataSource:
- driverClassName: org.h2.Driver
- pooled: true
- jmxExport: true
+  driverClassName: org.h2.Driver
+  pooled: true
+  jmxExport: true
 
 hibernate:
   cache:
@@ -62,52 +62,30 @@ hibernate:
     use_second_level_cache: false
     use_query_cache: false
 
-myGlobalVariables:
-  username: 'adminu'
-  password: 'adminp'
-  other: 'somethingelse'
-
 environments:
   development:
     logging.level.com.arjang: INFO
     spring.h2.console.enabled: true
-    myEnvironmentVariables: 'This is Dev variable'
-    tomcatDirectoryPath: '/tmp/grails-sample/'
-    testMode: true
-    fileAge: 30
     server:
-      port: 8081
+      port: 8082
       servlet:
-        context-path: '/example1'
+        context-path: '/example2'
     dataSource:
       dbCreate: create-drop
-      username: 'adminExample1'
-      password: 'adminExample1'
+      username: 'adminExample2'
+      password: 'adminExample2'
       url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-
-  Staging:
-    logging.level.com.arjang: DEBUG
-    myEnvironmentVariables: 'This is Staging variable'
-    tomcatDirectoryPath: '/opt/stage_tomcat/'
-    testMode: true
-    fileAge: 30
-    dataSource:
-      dbCreate: create-drop
-      url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    dataSources:
+      myotherdb:
+        dbCreate: create-drop
+        username: 'adminSeconddb2'
+        password: 'adminSeconddb2'
+        url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   test:
-    myEnvironmentVariables: 'This is Test variable'
-    tomcatDirectoryPath: '/opt/stage_tomcat/'
-    testMode: true
-    fileAge: 30
     dataSource:
       dbCreate: update
       url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   production:
-    logging.level.com.arjang: ERROR
-    myEnvironmentVariables: 'This is Prod variable'
-    tomcatDirectoryPath: '/opt/prod_tomcat/'
-    testMode: true
-    fileAge: 30
     dataSource:
       dbCreate: none
       url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
