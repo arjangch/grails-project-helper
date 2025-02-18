@@ -151,6 +151,7 @@ environments:
       servlet:
         context-path: '/example1'
 ```
+See [Example2](../example2/README.md) for DataSources
 
 ## Others
 ### Inject text file into GSP
