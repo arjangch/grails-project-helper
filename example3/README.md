@@ -1,23 +1,23 @@
-## Grails 6.2.3 Documentation
+## Grails 7.0.0-M1 Documentation
 
-- [User Guide](https://docs.grails.org/6.2.3/guide/index.html)
-- [API Reference](https://docs.grails.org/6.2.3/api/index.html)
+- [User Guide](https://docs.grails.org/7.0.0-M1/guide/index.html)
+- [API Reference](https://docs.grails.org/7.0.0-M1/api/index.html)
 - [Grails Guides](https://guides.grails.org/index.html)
 ---
 
-## Feature asset-pipeline-grails documentation
-
-- [Grails Asset Pipeline Core documentation](https://www.asset-pipeline.com/manual/)
-
 ## Feature scaffolding documentation
 
-- [Grails Scaffolding Plugin documentation](https://grails.github.io/scaffolding/latest/groovydoc/)
+- [Grails Scaffolding Plugin documentation](https://docs.grails.org/7.0.0-M1/guide/scaffolding.html)
 
-- [https://grails-fields-plugin.github.io/grails-fields/latest/guide/index.html](https://grails-fields-plugin.github.io/grails-fields/latest/guide/index.html)
+- [https://github.com/gpc/fields#readme](https://github.com/gpc/fields#readme)
 
-## Feature geb documentation
+## Feature asset-pipeline-grails documentation
 
-- [Grails Geb Functional Testing for Grails documentation](https://github.com/grails3-plugins/geb#readme)
+- [Grails Asset Pipeline Core documentation](https://github.com/bertramdev/asset-pipeline#readme)
+
+## Feature geb-with-testcontainers documentation
+
+- [Grails Geb Functional Testing for Grails with Testcontainers documentation](https://github.com/grails/geb#readme)
 
 - [https://www.gebish.org/manual/current/](https://www.gebish.org/manual/current/)
 

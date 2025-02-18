@@ -4,18 +4,16 @@ buildscript {
         mavenCentral()
     }
     dependencies { // Not Published to Gradle Plugin Portal
-        classpath "org.grails:grails-gradle-plugin:6.2.4"
-        classpath "org.grails.plugins:hibernate5:8.1.0"
+        classpath "org.grails:grails-gradle-plugin:7.0.0-M3"
+        classpath "org.grails.plugins:hibernate5:9.0.0-M2"
     }
 }
 
 plugins {
     id "groovy"
-    id "com.github.erdi.webdriver-binaries" version "3.2"
     id "war"
     id "idea"
-    id "com.bertramlabs.asset-pipeline" version "4.5.1"
-    id "application"
+    id "com.bertramlabs.asset-pipeline" version "5.0.5"
     id "eclipse"
 }
 
@@ -30,18 +28,12 @@ repositories {
     maven { url "https://repo.grails.org/grails/core/" }
 }
 
-configurations {
-    all {
-        resolutionStrategy.eachDependency { DependencyResolveDetails details->
-            if (details.requested.group == 'org.seleniumhq.selenium') {
-                details.useVersion('4.19.1')
-            }
-        }
-    }
-}
-
 dependencies {
     profile "org.grails.profiles:web"
+    developmentOnly "org.webjars.npm:bootstrap:5.3.3"
+    developmentOnly "org.webjars.npm:bootstrap-icons:1.11.3"
+    developmentOnly "org.webjars.npm:jquery:3.7.1"
+    implementation platform("org.grails:grails-bom:$grailsVersion")
     implementation "org.grails:grails-core"
     implementation "org.grails:grails-logging"
     implementation "org.grails:grails-plugin-databinding"
@@ -60,47 +52,33 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "org.springframework.boot:spring-boot-starter-validation"
-    compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
-    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:4.5.1"
+    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails"
     runtimeOnly "com.h2database:h2"
     runtimeOnly "org.apache.tomcat:tomcat-jdbc"
-    runtimeOnly "org.fusesource.jansi:jansi:1.18"
-    testImplementation "io.micronaut:micronaut-inject-groovy"
+    runtimeOnly "org.fusesource.jansi:jansi"
+    integrationTestImplementation testFixtures("org.grails.plugins:geb")
     testImplementation "org.grails:grails-gorm-testing-support"
     testImplementation "org.grails:grails-web-testing-support"
-    testImplementation "org.grails.plugins:geb"
-    testImplementation "org.seleniumhq.selenium:selenium-api:4.19.1"
-    testImplementation "org.seleniumhq.selenium:selenium-remote-driver:4.19.1"
-    testImplementation "org.seleniumhq.selenium:selenium-support:4.19.1"
     testImplementation "org.spockframework:spock-core"
-    testRuntimeOnly "org.seleniumhq.selenium:selenium-chrome-driver:4.19.1"
-    testRuntimeOnly "org.seleniumhq.selenium:selenium-firefox-driver:4.19.1"
-    testRuntimeOnly "org.seleniumhq.selenium:selenium-safari-driver:4.19.1"
 }
 
-application {
-    mainClass = "com.arjang.Application"
-}
-
-java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-}
+compileJava.options.release = 17
 
 tasks.withType(Test) {
     useJUnitPlatform()
-    systemProperty "geb.env", System.getProperty('geb.env')
-    systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
-    systemProperty 'webdriver.chrome.driver', "${System.getenv('CHROMEWEBDRIVER')}/chromedriver"
-    systemProperty 'webdriver.gecko.driver', "${System.getenv('GECKOWEBDRIVER')}/geckodriver"
-}
-webdriverBinaries {
-    chromedriver '122.0.6260.0'
-    geckodriver '0.33.0'
-    edgedriver '110.0.1587.57'
 }
 assets {
-    minifyJs = true
-    minifyCss = true
-    skipNonDigests = true
+    excludes = [
+            'webjars/jquery/**',
+            'webjars/bootstrap/**',
+            'webjars/bootstrap-icons/**'
+    ]
+    includes = [
+            'webjars/jquery/*/dist/jquery.js',
+            'webjars/bootstrap/*/dist/js/bootstrap.bundle.js',
+            'webjars/bootstrap/*/dist/css/bootstrap.css',
+            'webjars/bootstrap-icons/*/font/bootstrap-icons.css',
+            'webjars/bootstrap-icons/*/font/fonts/*',
+    ]
 }

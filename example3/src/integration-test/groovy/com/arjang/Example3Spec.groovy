@@ -1,22 +1,19 @@
 package com.arjang
-import grails.gorm.transactions.Rollback
+import grails.plugin.geb.ContainerGebSpec
 import grails.testing.mixin.integration.Integration
 
-import geb.spock.*
-
 /**
- * See https://www.gebish.org/manual/current/ for more instructions
+ * See https://docs.grails.org/latest/guide/testing.html#functionalTesting and https://www.gebish.org/manual/current/
+ * for more instructions on how to write functional tests with Grails and Geb.
  */
 @Integration
-@Rollback
-class Example3Spec extends GebSpec {
+class Example3Spec extends ContainerGebSpec {
 
-    void "test something"() {
-        when:"The home page is visited"
+    void 'should display the correct title on the home page'() {
+        when: 'visiting the home page'
             go '/'
 
-        then:"The title is correct"
-            title == "Welcome to Grails"
+        then: 'the page title is correct'
+            title == 'Welcome to Grails'
     }
-
 }
