@@ -1,6 +1,5 @@
-## Example 1
-## Data Source
-### H2
+# **Data Source**
+## **H2**
 By default, there is an H2 database installed you can disable it. Comment out or change password in yml
 ```yaml
 dataSource:
@@ -30,7 +29,7 @@ environments:
           jmxExport: false
           url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 ```
-Enable H2 database [console](http://localhost:8081/example1/h2-console/) for each environment in yml. [See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
+Enable H2 database [console](http://localhost:8082/example2/h2-console/) for each environment in yml. [See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
 ```yaml
 environments:
     development:
@@ -39,7 +38,7 @@ environments:
         spring.h2.console.enabled: false
 ```
 
-### MySql
+## **MySql**
 Other databases need to be injected. For example, add following to build.gradle
 ```groovy
 dependencies {
@@ -60,19 +59,23 @@ environments:
           username: "exampleAdmin"
           password: "examplePassword"
 ```
-#### Multiple Data source
+
+### **Multiple Data source**
 Multiple data sources can be configured..
 ```yaml
 environments:
     development:
-        dataSources:
-          myotherdb:
-            dbCreate: update
-            driverClassName: "com.mysql.cj.jdbc.Driver"
-            dialect: "org.hibernate.dialect.MySQL8Dialect"
-            url: "jdbc:mysql://localhost:3306/example1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false"
-            username: "exampleAdmin"
-            password: "examplePassword"
+      dataSource:
+          dbCreate: create-drop
+          username: adminExample2
+          password: 'adminExample2'
+          url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+      dataSources:
+        myotherdb:
+          dbCreate: create-drop
+          username: 'adminSeconddb2'
+          password: 'adminSeconddb2'
+          url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
 ```
 Then map the domain class to use the secondary DB.
 ```groovy
@@ -83,7 +86,7 @@ class Employee {
     }
 }
 ```
-For example in the above code we don't want versioning because this table is also used in other applications.
+For example in the above code we don't want versioning because this table is also used in other apps.
 
 To work with the secondary DB in the controller add transactional to class.
 ```groovy
@@ -120,7 +123,7 @@ def usingSession(){
 }
 ```
 
-#### DataSource Properties
+### **DataSource Properties**
 Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html)
 
 ```yaml
@@ -147,4 +150,3 @@ Usually Production DB needs other setting to manage high volume and high availab
         jdbcInterceptors: ConnectionState
         defaultTransactionIsolation: 2
 ```
-

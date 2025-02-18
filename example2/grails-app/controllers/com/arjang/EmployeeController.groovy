@@ -8,8 +8,35 @@ import grails.gorm.transactions.Transactional
 class EmployeeController {
 
     EmployeeService employeeService
+    DbtestService dbtestService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def withAnnotation(){
+        log.info '-1--='+ dbtestService.withAnnotation()
+        redirect(uri: "/")
+    }
+
+    def usingTransaction() {
+        log.info '-2--='+ dbtestService.usingTransaction()
+        redirect(uri: "/")
+    }
+
+    def createNewSession() {
+        log.info '-2--='+ dbtestService.createNewSession()
+        redirect(uri: "/")
+    }
+
+    def usingSession() {
+        log.info '-2--='+ dbtestService.usingSession()
+        redirect(uri: "/")
+    }
+
+    def justCallObject() {
+        log.info '-2--='+ dbtestService.justCallObject()
+        redirect(uri: "/")
+    }
+
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

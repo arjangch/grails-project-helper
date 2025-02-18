@@ -74,6 +74,30 @@
                             <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
                         </li>
                     </g:each>
+                    <li></li>
+                    <li><a href="http://localhost:8082/example2/h2-console/">H2 DB Console</a> </li>
+                </ul>
+            </div>
+
+            <div id="controllers2" role="navigation">
+                <h2>Available Tests:</h2>
+                See console for output.
+                <ul>
+                    <li class="controller">
+                        <g:link controller="employee" action="withAnnotation">With Annotation</g:link> (( Works ))
+                    </li>
+                    <li class="controller">
+                        <g:link controller="employee" action="usingTransaction">Using Transaction</g:link> (( Works ))
+                    </li>
+                    <li class="controller">
+                        <g:link controller="employee" action="createNewSession">Create New Session</g:link> (( Works but cannot add new Employee to second-DB ))
+                    </li>
+                    <li class="controller">
+                        <g:link controller="employee" action="usingSession">Using Session</g:link> (( This will throw Exception ))
+                    </li>
+                    <li class="controller">
+                        <g:link controller="employee" action="justCallObject">Just Call The Object</g:link> (( This will throw Exception ))
+                    </li>
                 </ul>
             </div>
         </section>
