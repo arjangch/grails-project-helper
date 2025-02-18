@@ -153,7 +153,7 @@ environments:
 ```
 See [Example2](../example2/README.md) for DataSources
 
-## Others
+## **Others**
 ### Inject text file into GSP
 * Add following to UrlMappings.goovy
 ```groovy
