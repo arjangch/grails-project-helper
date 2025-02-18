@@ -37,11 +37,6 @@ These projects are built with Grails 7 but sometime I will explain how it is don
 | groovy | 4       |
 | Grails | 7       |
 
-## Examples
-Examples are divided into different grails projects.
-Developers intention should be to learn from examples. Study the code and copy them to their own project.
-Examples may not be runnable.
-
 
 ## Install Grails
 The easiest way to setup Grails in your local environment is by using [sdkamn](https://sdkman.io/).
@@ -57,9 +52,14 @@ groovy=4.0.24
 grails=7.0.0-M1
 ```
 
-See examples below will help you to understand how to use and configure Grails.
+## Examples
+Examples are divided into different grails projects.
+Developers intention should be to learn from examples. Study the code and copy them to their own project.
+Examples may not be runnable.
+
 - [Example1](example1/README.md): Basic Grails tips and tricks.
 - [Example2](example2/README.md): DataSources.
-- [Example3](example3.md): Connect with Oauth2 and JWT.
+- [Example3](example3/README.md): Create REST API.
+- [Example4](example4/README.md): Consume REST API. Example include connecting to Netsuite and Salesforce.
 
 
