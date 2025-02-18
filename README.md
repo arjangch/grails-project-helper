@@ -28,7 +28,7 @@ internal commands, config files, etc.
 
 
 ## Minimum System Requirements
-These project are bulid with Grails 7 but sometime I will explain how it is done in older versions.
+These projects are built with Grails 7 but sometime I will explain how it is done in older versions.
 
 | Tech   | Version |
 |--------|---------|
@@ -44,9 +44,9 @@ Examples may not be runnable.
 
 
 ## Install Grails
-The easiest way to setup Grails is using [sdkamn](https://sdkman.io/).
-Then add the file ".sdkmanrc" into every root directory of a project.
-Every time entring the directory it will load tech stack listed in .sdkman.
+The easiest way to setup Grails in your local environment is by using [sdkamn](https://sdkman.io/).
+Then add the file ".sdkmanrc" in every root directory of a project.
+Every time entering the directory it will load tech stack listed in .sdkman.
 Essentially you can run multiple different versions in the same local environment. For example this .sdkmanrc
 ```groovy
 # Enable auto-env through the sdkman_auto_env config
@@ -57,7 +57,9 @@ groovy=4.0.24
 grails=7.0.0-M1
 ```
 
+See examples below will help you to understand how to use and configure Grails.
 - [Example1](example1/README.md): Basic Grails tips and tricks.
 - [Example2](example2/README.md): DataSources.
 - [Example3](example3.md): Connect with Oauth2 and JWT.
+
 

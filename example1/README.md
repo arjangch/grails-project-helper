@@ -1,31 +1,28 @@
-## Example 1
-
-## Gradle 8
-
-## Command Lines
+# **Gradle 8**
+## **Command Lines**
 Build war files
-```csh 
+```csh
 gradle -Dgrails.env=dev assemble
 gradle -Dgrails.env=prod assemble
 ```
-If custom environment is setup in yml file 
+If custom environment is setup in yml file
 ```csh
 gradle -Dgrails.env=staging assemble
 gradle -Dgrails.env=preproduction assemble
 ```
 Running app locally
-```csh 
+```csh
 ./grailsw run-app
 ./grailsw -Dgrails.env=staging run-app
 ./grailsw -Dgrails.env=preproduction run-app
 ```
-or running app locally with gradle 
-```csh 
-./gradlew bootRun 
+or running app locally with gradle
+```csh
+./gradlew bootRun
 ./gradlew -Dgrails.env=staging  bootRun
 ```
-Run specific commends grails with gradle 
-```csh 
+Run specific commends grails with gradle
+```csh
 ./gradlew runCommand -Pargs="generate-all com.micompany.MyStaff"
 ./gradlew runCommand -Pargs="create-domain-class com.micompany.MyStaff"
 ./grailsw create-domain-class com.micompany.Products
@@ -34,23 +31,23 @@ Upgrade wrapper
 ```csh
 ./grailsw update-wrapper
 ```
-Other gradle commands. 
+Other gradle commands.
 ```csh
 ./gradlew tasks
-./gradlew publishToMavenLocal 
+./gradlew publishToMavenLocal
 ```
 
-## Running System Info 
+## **Running System Info**
 See example running in [index.gsp](grails-app/views/index.gsp)
 
-#### Runtime Memory information 
+### Runtime Memory information
 TODO
 [Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
 
-#### Access Configuration Information
-Also read 
+### Access Configuration Information
+Also read
 Application name
-```groovy 
+```groovy
 ${grails.util.Metadata.current.getApplicationName()}
 ```
 Application Version
@@ -61,8 +58,8 @@ Environment name
 ```groovy
 ${grails.util.Environment.current.name}
 ```
-#### Environment Configuration variables
-This has been depricated in Gradle 8
+### Environment Configuration variables
+This has been deprecated in Gradle 8
 ```groovy
 ${grailsApplication.config.myEnvironmentVariables}
 ```
@@ -71,12 +68,12 @@ Use this instead
 grailsApplication.config.get("myEnvironmentVariables")
 ```
 
-#### Access System Information
-Java version 
+## **Access System Information**
+Java version
 ```groovy
 ${System.getProperty('java.version')}
 ```
-Groovy version 
+Groovy version
 ```groovy
 ${GroovySystem.getVersion()}
 ```
@@ -85,13 +82,12 @@ Grails version
 ${grailsApplication.metadata.getGrailsVersion()}
 ```
 
-Also see [Grails config](https://docs.grails.org/7.0.0-M1/guide/conf.html) 
+Also see [Grails config](https://docs.grails.org/7.0.0-M1/guide/conf.html)
 
-## application.yml Configuration File
+## **application.yml Configuration File**
 See [application.yml](grails-app/conf/application.yml)
 
-### Variables
-#### Global credentials
+### Global Variables
 same global variables are used in all running environment.
 ```yaml
 myGlobalVariables:
@@ -111,7 +107,7 @@ class BootStrap {
 }
 ```
 
-#### Environment Variables
+### Environment Variables
 Variable that are dependent on running environment. As example shows Groovy
 can get proper variable data type.
 ```yaml
@@ -138,124 +134,37 @@ In GSP files get values from yml file. See file /view/index.gsp.
 ${grailsApplication.config.tomcatDirectoryPath}
 ```
 
-#### Change log level
+### Change log level
 Running environment log level can be changed
 ```yaml
   development:
     logging.level.com.arjang: INFO
 ```
 
-#### Application Server settings
+### Application Server settings
 Server port and context for each environment can be set.
 ```yaml
+environments:
+  development:
     server:
       port: 8081
       servlet:
         context-path: '/example1'
 ```
 
-### Data Source
-#### H2
-By default, there is an H2 database installed you can disable it. Comment out or change password in yml
-```yaml
-dataSource:
-  driverClassName: org.h2.Driver
-  username: sa
-  password: ''
-  pooled: true
-  jmxExport: true
-```
-To increase security use different credentials in each environment.
-```yaml
-environments:
-  development:
-      dataSource:
-          dbCreate: create-drop
-          username: sa
-          password: ''
-          pooled: true
-          jmxExport: true
-          url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-  production:
-      dataSource:
-          dbCreate: none
-          username: sa
-          password: ''
-          pooled: true
-          jmxExport: false
-          url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-```
-Enable H2 database [console](http://localhost:8081/example1/h2-console/) for each environment in yml. [See doc](https://docs.grails.org/7.0.0-M1/guide/conf.html#databaseConsole)
-```yaml
-environments:
-    development:
-        spring.h2.console.enabled: true
-    production:
-        spring.h2.console.enabled: false
-```
-
-#### MySql
-Other databases need to be injected. For example, add following to build.gradle
-```groovy
-dependencies {
-    // mysql 8
-    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    implementation 'mysql:mysql-connector-java:8.0.33'
-}
-```
-Then in yml setup connection to DB
-```yaml
-environments:
-  development:
-      dataSource:
-          dbCreate: update
-          driverClassName: "com.mysql.cj.jdbc.Driver"
-          dialect: "org.hibernate.dialect.MySQL8Dialect"
-          url: "jdbc:mysql://localhost:3306/example1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false"
-          username: "exampleAdmin"
-          password: "examplePassword"
-```
-
-#### DataSource Properties
-Usually Production DB needs other setting to manage high volume and high availability. See [The Tomcat JDBC Connection Pool](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html)
-
-```yaml
-  production:
-    dataSource:
-      dbCreate: none
-      url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-      properties:
-        jmxEnabled: true
-        initialSize: 5
-        maxActive: 50
-        minIdle: 5
-        maxIdle: 25
-        maxWait: 10000
-        maxAge: 600000
-        timeBetweenEvictionRunsMillis: 5000
-        minEvictableIdleTimeMillis: 60000
-        validationQuery: SELECT 1
-        validationQueryTimeout: 3
-        validationInterval: 15000
-        testOnBorrow: true
-        testWhileIdle: true
-        testOnReturn: false
-        jdbcInterceptors: ConnectionState
-        defaultTransactionIsolation: 2
-```
 ## Others
 ### Inject text file into GSP
-* Add following to UrlMappings.goovy 
+* Add following to UrlMappings.goovy
 ```groovy
 "/buildinfo"(view: "/buildinfo")
 ```
-* Add file buildinfo.gsp to /views/ directory 
+* Add file buildinfo.gsp to /views/ directory
 * Add jquery-3.7.1.min.js to /assets/javascripts/
 * Add following to gsp page
 ```html
 <asset:javascript src="jquery-3.7.1.min.js"/>
 ```
-* Add a JS function in < header > to load the file 
+* Add a JS function in < header > to load the file
 ```javascript
     <script>
         $(function () {
@@ -263,8 +172,7 @@ Usually Production DB needs other setting to manage high volume and high availab
         });
     </script>
 ```
-* Add < div > to include content of the file. 
+* Add < div > to include content of the file.
 ```html
 <div id="buildinfocontent"></div>
 ```
-
