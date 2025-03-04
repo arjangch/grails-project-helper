@@ -68,6 +68,12 @@ environments:
       dbCreate: create-drop
       url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   test:
+    logging.level.com.arjang: INFO
+    spring.h2.console.enabled: true
+    server:
+      port: 8083
+      servlet:
+        context-path: "/example3"
     dataSource:
       dbCreate: update
       url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE

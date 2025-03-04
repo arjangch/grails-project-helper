@@ -11,7 +11,7 @@ class Example3Spec extends ContainerGebSpec {
 
     void 'should display the correct title on the home page'() {
         when: 'visiting the home page'
-            go '/'
+            go '/example3/'
 
         then: 'the page title is correct'
             title == 'Welcome to Grails'

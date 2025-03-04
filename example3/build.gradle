@@ -61,6 +61,30 @@ dependencies {
     testImplementation "org.grails:grails-gorm-testing-support"
     testImplementation "org.grails:grails-web-testing-support"
     testImplementation "org.spockframework:spock-core"
+
+
+    // core login
+    // https://grails-plugins.github.io/grails-spring-security-core/
+     //https://grails.github.io/grails-spring-security-core/7.0.0-M1/index.html
+//    implementation 'org.grails.plugins:spring-security-core:7.0.0-M1'
+    // https://grails.github.io/grails-spring-security-core/6.0.x/index.html
+//    implementation 'org.grails.plugins:spring-security-core:6.0.3'
+    // then run in command line to create users
+
+    // UI for spring security.
+    // https://grails-plugins.github.io/grails-spring-security-ui/latest/index.html
+    // implementation 'org.grails.plugins:spring-security-ui:4.0.0-RC1'
+
+    // https://github.com/alvarosanchez/grails-spring-security-rest
+    //https://grails-plugins.github.io/grails-spring-security-rest/3.0.1/docs/index.html
+    // implementation "org.grails.plugins:spring-security-rest:3.0.1"
+
+    // Jasypt is a java library which allows the developer to add basic encryption capabilities to
+    // projects with minimum effort, and without the need of having deep knowledge on how cryptography works.
+    // http://www.jasypt.org/
+    // https://github.com/dtanner/grails-jasypt
+    // implementation "org.tros:jasypt-encryption:4.0.4"
+
 }
 
 compileJava.options.release = 17

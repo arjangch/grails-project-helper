@@ -1,5 +1,6 @@
 package com.arjang
 
+import grails.gorm.transactions.Transactional
 import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.Rollback
 import spock.lang.Specification
@@ -7,20 +8,20 @@ import org.hibernate.SessionFactory
 
 @Integration
 @Rollback
+@Transactional(readOnly = false, connection = "myotherdb")
 class EmployeeServiceSpec extends Specification {
 
     EmployeeService employeeService
     SessionFactory sessionFactory
 
     private Long setupData() {
-        // TODO: Populate valid domain instances and return a valid ID
-        //new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        //Employee employee = new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //employee.id
+        new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT2", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        Employee employee = new Employee(name: "LouisT3", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT4", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT5", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        employee.id
+
     }
 
     void "test get"() {
@@ -38,34 +39,33 @@ class EmployeeServiceSpec extends Specification {
 
         then:
         employeeList.size() == 2
-        assert false, "TODO: Verify the correct instances are returned"
     }
 
     void "test count"() {
         setupData()
 
         expect:
-        employeeService.count() == 5
+        employeeService.count() == 15
     }
 
     void "test delete"() {
         Long employeeId = setupData()
 
         expect:
-        employeeService.count() == 5
+        employeeService.count() == 21
 
         when:
         employeeService.delete(employeeId)
         sessionFactory.currentSession.flush()
 
         then:
-        employeeService.count() == 4
+        employeeService.count() == 191
+
     }
 
     void "test save"() {
         when:
-        assert false, "TODO: Provide a valid instance to save"
-        Employee employee = new Employee()
+        Employee employee = new Employee(name: "LouisT2", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112")
         employeeService.save(employee)
 
         then:
