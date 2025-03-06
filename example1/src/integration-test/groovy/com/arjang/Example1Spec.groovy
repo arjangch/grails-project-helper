@@ -14,6 +14,6 @@ class Example1Spec extends ContainerGebSpec {
             go '/'
 
         then: 'the page title is correct'
-            title == 'Welcome to Grails'
+            title == 'Welcome to Example1'
     }
 }

@@ -64,7 +64,7 @@
 <div id="content" role="main">
     <div class="container">
         <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
+            <h1>Welcome to Example1</h1>
 
             <p>
                 Congratulations, you have successfully started your first Grails application! At the moment

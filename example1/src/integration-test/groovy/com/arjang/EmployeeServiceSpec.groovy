@@ -13,14 +13,12 @@ class EmployeeServiceSpec extends Specification {
     SessionFactory sessionFactory
 
     private Long setupData() {
-        // TODO: Populate valid domain instances and return a valid ID
-        //new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        //Employee employee = new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        //new Employee(...).save(flush: true, failOnError: true)
-        assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //employee.id
+        new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        Employee employee = new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112").save(flush: true, failOnError: true)
+        employee.id
     }
 
     void "test get"() {
@@ -38,7 +36,6 @@ class EmployeeServiceSpec extends Specification {
 
         then:
         employeeList.size() == 2
-        assert false, "TODO: Verify the correct instances are returned"
     }
 
     void "test count"() {
@@ -64,8 +61,7 @@ class EmployeeServiceSpec extends Specification {
 
     void "test save"() {
         when:
-        assert false, "TODO: Provide a valid instance to save"
-        Employee employee = new Employee()
+        Employee employee = new Employee(name: "LouisT1", lastname: "mandy", employeeId: 1111, employeeNotes: "my robot112")
         employeeService.save(employee)
 
         then:

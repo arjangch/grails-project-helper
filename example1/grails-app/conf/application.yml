@@ -93,6 +93,8 @@ environments:
     fileAge: 30
     dataSource:
       dbCreate: create-drop
+      username: 'adminExample1'
+      password: 'adminExample1'
       url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   test:
     myEnvironmentVariables: 'This is Test variable'
@@ -100,7 +102,9 @@ environments:
     testMode: true
     fileAge: 30
     dataSource:
-      dbCreate: update
+      dbCreate: create-drop
+      username: 'adminExample1'
+      password: 'adminExample1'
       url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   production:
     logging.level.com.arjang: ERROR
@@ -109,7 +113,9 @@ environments:
     testMode: true
     fileAge: 30
     dataSource:
-      dbCreate: none
+      dbCreate: create-drop
+      username: 'adminExample1'
+      password: 'adminExample1'
       url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
       properties:
         jmxEnabled: true
