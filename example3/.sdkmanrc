@@ -2,6 +2,6 @@
 # Add key=value pairs of SDKs to use below
 # java=21.0.5-zulu
 java=17.0.13-zulu
-gradle=8.10.2
+gradle=8.13
 groovy=4.0.24
-grails=7.0.0-M1
+grails=7.0.0-M3
