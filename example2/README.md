@@ -1,4 +1,4 @@
-# **Data Source**
+# **Example 2: Data Source**
 ## **H2**
 By default, there is an H2 database installed you can disable it. Comment out or change password in yml
 ```yaml

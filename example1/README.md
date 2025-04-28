@@ -1,4 +1,4 @@
-# **Gradle 8**
+# **Example 1: Basic Grails tips and tricks.**
 ## **Command Lines**
 Build war files
 ```csh
