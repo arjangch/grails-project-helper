@@ -1,0 +1,41 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  "privacy": {
+    "diagnostics": true,
+    "metrics": true,
+    "usage": true
+  },
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": true,
+    "usage": true
+  },
+  "edit_predictions": {
+    "enabled": true,
+    "disabled_globs": [
+      "**/.env*",
+      "**/*.pem",
+      "**/*.key",
+      "**/*.cert",
+      "**/*.crt",
+      "**/*.kdbx",
+      "**/ownCloud/**"
+    ]
+  },
+  "file_scan_exclusions": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/*.kdbx",
+    "**/ownCloud/**"
+  ],
+  "file_scan_inclusions": [
+    ".yaml",
+    ".yml"
+  ]
+}
