@@ -62,6 +62,12 @@ dependencies {
     testImplementation "org.apache.grails:grails-testing-support-datamapping"
     testImplementation "org.apache.grails:grails-testing-support-web"
     testImplementation "org.spockframework:spock-core"
+
+    // https://mvnrepository.com/artifact/com.github.anonymousmister.gradle.plugin/1password-plugin
+//    implementation("com.github.anonymousmister.gradle.plugin:1password-plugin:0.0.8")
+
+    // https://mvnrepository.com/artifact/tech.toolpack.gradle/1password-plugin
+//    implementation("tech.toolpack.gradle:1password-plugin:1.0.0")
 }
 
 compileJava.options.release = 17
@@ -85,4 +91,25 @@ assets {
             'webjars/bootstrap-icons/*/font/fonts/*',
     ]
 }
+
+/**
+ *
+ */
+tasks.register('fetchUsername') {
+    doLast {
+        def command = ["op", "read", "op://Employee/Testing-Login/username"]
+        def process = command.execute()
+        def output = new StringBuffer()
+        def error = new StringBuffer()
+
+        process.waitForProcessOutput(output, error)
+
+        if (process.exitValue() == 0) {
+            println "Username: ${output.toString().trim()}"
+        } else {
+            println "Failed to fetch username: ${error.toString()}"
+        }
+    }
+}
+
 
