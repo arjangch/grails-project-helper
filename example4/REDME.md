@@ -1,6 +1,19 @@
 
-### 1Password CLI 
-#### Setup CLI
+## 1Password
+### SDK setup 
+- Create a Vault for this test. Call it "TestSDKpasswords"
+- Add a username and password to vault. 
+- Go to developer 
+- Go to Services --> integration --> directory --> other
+- Create service account 
+- Name it "TestSdkService"
+- Select your vault  "TestSDKpasswords" and change it to "Read" access only 
+- select create account 
+- Copy Service Token created 
+- 
+
+
+### Setup CLI
 Install CLI app in your laptop following instructions [here](https://developer.1password.com/docs/cli/get-started/)
 #### Enable CLI in app
 - open 1Passowrd app 
@@ -8,16 +21,17 @@ Install CLI app in your laptop following instructions [here](https://developer.1
 - Check "Show 1Password Developler"
 - Check "Integrate with 1Password CLI"
 
-#### Common command lines 
-- op signin 
+### Using CLI command lines 
+- op --version
 - op --help
+- op signin
 - op vault list
 - op item get Testing-Login --reveal --format json
 - op item get Testing-Login --fields password --reveal
 - op item get Testing-Login --fields password --reveal --format json
 - op read op://Employee/Testing-Login/username
 
-### Gradle 
+### Using CLI In Gradle 
 #### Option 1
 Set System environment variable and fill it with 1Password. Then use it in gradle or your code. <br>
 `export MY_USERNAME=$(op read "op://Employee/Testing-Login/username")` <br>
@@ -55,14 +69,11 @@ Then run task
 
 
 ### Docs
-[1Password CLI](https://developer.1password.com/docs/cli#quick-st)
-
-[1Password Gradle](https://github.com/ValtechMobility/gradle-onepassword-credentials-plugin)
-
-[Maven Repository](https://mvnrepository.com/artifact/com.github.anonymousmister.gradle.plugin/1password-plugin/0.0.8)
-
-[1Password Github](https://github.com/1Password)
-
-[1Password Intellij Plugin](https://plugins.jetbrains.com/plugin/19698-1password) Source is in [Github](https://github.com/shyim/idea-1password)
-
-[Uninstall 1Password](https://support.1password.com/uninstall-1password/?mac)
+- [Create service account in 1Password](https://youtu.be/E3HKeG9P8HA?si=vZux4R_f974AlR0F)
+- [1Password CLI](https://developer.1password.com/docs/cli#quick-st)
+- There are some help in 1Password github account. [1Password Github](https://github.com/1Password)
+- Not very useful [1Password Gradle](https://github.com/ValtechMobility/gradle-onepassword-credentials-plugin) 
+  - Maven plugin is difficult to use in the code. [Maven Repository](https://mvnrepository.com/artifact/com.github.anonymousmister.gradle.plugin/1password-plugin/0.0.8)
+- Not very useful [1Password Intellij Plugin](https://plugins.jetbrains.com/plugin/19698-1password) 
+  - Source is in [Github](https://github.com/shyim/idea-1password)
+- Completely [Uninstall 1Password](https://support.1password.com/uninstall-1password/?mac)
