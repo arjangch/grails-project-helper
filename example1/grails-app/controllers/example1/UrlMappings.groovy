@@ -1,4 +1,4 @@
-package example4
+package example1
 
 class UrlMappings {
 

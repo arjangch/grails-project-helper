@@ -1,4 +1,4 @@
-# **Example 2: Data Source**
+# **Data Source**
 ## **H2**
 By default, there is an H2 database installed you can disable it. Comment out or change password in yml
 ```yaml
@@ -151,5 +151,5 @@ Usually Production DB needs other setting to manage high volume and high availab
         defaultTransactionIsolation: 2
 ```
 # Bugs List
-- Domain in second DB fails integrationTest https://github.com/grails/gorm-hibernate5/issues/954
+- Domain in second DB fails functional test https://github.com/grails/gorm-hibernate5/issues/954
 - 
