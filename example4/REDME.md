@@ -70,6 +70,7 @@ Then run task
 
 ### Docs
 - [Create service account in 1Password](https://youtu.be/E3HKeG9P8HA?si=vZux4R_f974AlR0F)
+- [1Password SDK](https://developer.1password.com/docs/sdks/)
 - [1Password CLI](https://developer.1password.com/docs/cli#quick-st)
 - There are some help in 1Password github account. [1Password Github](https://github.com/1Password)
 - Not very useful [1Password Gradle](https://github.com/ValtechMobility/gradle-onepassword-credentials-plugin) 
