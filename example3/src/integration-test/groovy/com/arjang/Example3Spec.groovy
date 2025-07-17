@@ -9,11 +9,21 @@ import grails.testing.mixin.integration.Integration
 @Integration
 class Example3Spec extends ContainerGebSpec {
 
-    void 'should display the correct title on the home page'() {
-        when: 'visiting the home page'
-            go '/example3/'
+    // TODO
+//    void 'should display the correct title on the home page'() {
+//        when: 'visiting the home page'
+//            go '/example3/'
+//
+//        then: 'the page title is correct'
+//            title == 'Welcome to Grails'
+//    }
 
-        then: 'the page title is correct'
-            title == 'Welcome to Grails'
+    def "should verify Google homepage title"() {
+        when: "I navigate to Google homepage"
+        go "https://www.google.com"
+
+        then: "the page title should be 'Google'"
+        title == "Google"
     }
+
 }

@@ -1,72 +1,71 @@
 buildscript {
     repositories {
-        maven { url "https://repo.grails.org/grails/core" }
         mavenCentral()
+        maven { url "https://repository.apache.org/content/groups/public" }
+        maven { url "https://repo.grails.org/grails/restricted" }
+
     }
-    dependencies { // Not Published to Gradle Plugin Portal
-        classpath "org.grails:grails-gradle-plugin:7.0.0-M3"
-        classpath "org.grails.plugins:hibernate5:9.0.0-M2"
+    dependencies {
+        classpath platform("org.apache.grails:grails-bom:$grailsVersion")
+        classpath "org.apache.grails:grails-gradle-plugins"
+        classpath "org.apache.grails:grails-data-hibernate5"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle"
     }
 }
 
-plugins {
-    id "groovy"
-    id "war"
-    id "idea"
-    id "com.bertramlabs.asset-pipeline" version "5.0.5"
-    id "eclipse"
-}
-
-// Not Published to Gradle Plugin Portal
-apply plugin: "org.grails.grails-web"
-apply plugin: "org.grails.grails-gsp"
-
+version "0.1"
 group = "com.arjang"
-version = "0.1"
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"war"
+apply plugin:"org.apache.grails.gradle.grails-web"
+apply plugin:"com.bertramlabs.asset-pipeline"
+apply plugin:"org.apache.grails.gradle.grails-gsp"
+
 repositories {
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/core/" }
+    maven { url "https://repository.apache.org/content/groups/public" }
+    maven { url "https://repo.grails.org/grails/restricted" }
 }
 
 dependencies {
-    profile "org.grails.profiles:web"
-    developmentOnly "org.webjars.npm:bootstrap:5.3.3"
-    developmentOnly "org.webjars.npm:bootstrap-icons:1.11.3"
-    developmentOnly "org.webjars.npm:jquery:3.7.1"
-    implementation platform("org.grails:grails-bom:$grailsVersion")
-    implementation "org.grails:grails-core"
-    implementation "org.grails:grails-logging"
-    implementation "org.grails:grails-plugin-databinding"
-    implementation "org.grails:grails-plugin-i18n"
-    implementation "org.grails:grails-plugin-interceptors"
-    implementation "org.grails:grails-plugin-rest"
-    implementation "org.grails:grails-plugin-services"
-    implementation "org.grails:grails-plugin-url-mappings"
-    implementation "org.grails:grails-web-boot"
-    implementation "org.grails.plugins:gsp"
-    implementation "org.grails.plugins:hibernate5"
-    implementation "org.grails.plugins:scaffolding"
+    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    integrationTestImplementation testFixtures("org.apache.grails:grails-geb")
+    console "org.apache.grails:grails-console"
+    developmentOnly "org.webjars.npm:bootstrap"
+    developmentOnly "org.webjars.npm:bootstrap-icons"
+    developmentOnly "org.webjars.npm:jquery"
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.apache.grails:grails-core"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
-    implementation "org.springframework.boot:spring-boot-starter-validation"
-    console "org.grails:grails-console"
-    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails"
+    implementation "org.apache.grails:grails-web-boot"
+    implementation "org.apache.grails:grails-logging"
+    implementation "org.apache.grails:grails-rest-transforms"
+    implementation "org.apache.grails:grails-databinding"
+    implementation "org.apache.grails:grails-i18n"
+    implementation "org.apache.grails:grails-services"
+    implementation "org.apache.grails:grails-url-mappings"
+    implementation "org.apache.grails:grails-interceptors"
+    implementation "org.apache.grails:grails-scaffolding"
+    implementation "org.apache.grails:grails-data-hibernate5"
+    implementation "org.apache.grails:grails-gsp"
+    profile "org.apache.grails.profiles:web"
     runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.apache.tomcat:tomcat-jdbc"
-    runtimeOnly "org.fusesource.jansi:jansi"
-    integrationTestImplementation testFixtures("org.grails.plugins:geb")
-    testImplementation "org.grails:grails-gorm-testing-support"
-    testImplementation "org.grails:grails-web-testing-support"
+    runtimeOnly "com.zaxxer:HikariCP"
+    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails"
+    testImplementation "org.apache.grails:grails-testing-support-datamapping"
+    testImplementation "org.apache.grails:grails-testing-support-web"
     testImplementation "org.spockframework:spock-core"
 
     // mysql 8
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     implementation 'mysql:mysql-connector-java:8.0.33'
-
-
 }
 
 compileJava.options.release = 17
@@ -74,6 +73,8 @@ compileJava.options.release = 17
 tasks.withType(Test) {
     useJUnitPlatform()
 }
+
+
 assets {
     excludes = [
             'webjars/jquery/**',
@@ -88,3 +89,4 @@ assets {
             'webjars/bootstrap-icons/*/font/fonts/*',
     ]
 }
+

@@ -1,23 +1,31 @@
-# **Gradle 8**
-## **Command Lines**
+# **Grails 7.0.0.M4**
+Just fast and helpful notes. 
+
+### Command Lines
 Build war files
 ```csh
 gradle -Dgrails.env=dev assemble
 gradle -Dgrails.env=prod assemble
 ```
-If custom environment is setup in yml file
+Build custom environment
 ```csh
 gradle -Dgrails.env=staging assemble
 gradle -Dgrails.env=preproduction assemble
 ```
-Running app locally
+### Running app locally
 ```csh
+grails run-app
 ./grailsw run-app
+./grailsw run
+```
+Run custom environments
+```csh
 ./grailsw -Dgrails.env=staging run-app
 ./grailsw -Dgrails.env=preproduction run-app
 ```
 or running app locally with gradle
 ```csh
+gradle bootRun
 ./gradlew bootRun
 ./gradlew -Dgrails.env=staging  bootRun
 ```
@@ -27,22 +35,27 @@ Run specific commends grails with gradle
 ./gradlew runCommand -Pargs="create-domain-class com.micompany.MyStaff"
 ./grailsw create-domain-class com.micompany.Products
 ```
-Upgrade wrapper
+### Upgrade wrapper
 ```csh
 ./grailsw update-wrapper
 ```
-Other gradle commands.
+List Gradle tasks
 ```csh
 ./gradlew tasks
+```
+Publish to local maven repo.
+```csh
 ./gradlew publishToMavenLocal
 ```
+### DB
+H2 DB console [http://localhost:8081/example1/h2-console](http://localhost:8081/example1/h2-console)
 
-## **Running System Info**
+### Running System Info
 See example running in [index.gsp](grails-app/views/index.gsp)
 
 ### Runtime Memory information
-TODO
-[Print Mem Info](http://localhost:8081/example1/employee/getMemInfo)
+Get system runtime memory usage in controller. 
+[Print Mem Info into console](http://localhost:8081/example1/employee/getMemInfo)
 
 ### Access Configuration Information
 Also read
@@ -68,7 +81,7 @@ Use this instead
 grailsApplication.config.get("myEnvironmentVariables")
 ```
 
-## **Access System Information**
+### Access System Information
 Java version
 ```groovy
 ${System.getProperty('java.version')}
@@ -84,8 +97,8 @@ ${grailsApplication.metadata.getGrailsVersion()}
 
 Also see [Grails config](https://docs.grails.org/7.0.0-M1/guide/conf.html)
 
-## **application.yml Configuration File**
-See [application.yml](grails-app/conf/application.yml)
+### application.yml 
+Configuration File See [application.yml](grails-app/conf/application.yml)
 
 ### Global Variables
 same global variables are used in all running environment.
@@ -135,14 +148,14 @@ ${grailsApplication.config.tomcatDirectoryPath}
 ```
 
 ### Change log level
-Running environment log level can be changed
+Change environment log level can be changed
 ```yaml
   development:
     logging.level.com.arjang: INFO
 ```
 
 ### Application Server settings
-Server port and context for each environment can be set.
+Change server port and context for each environment can be set.
 ```yaml
 environments:
   development:
@@ -153,7 +166,6 @@ environments:
 ```
 See [Example2](../example2/README.md) for DataSources
 
-## **Others**
 ### Inject text file into GSP
 * Add following to UrlMappings.goovy
 ```groovy
