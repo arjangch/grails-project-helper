@@ -68,6 +68,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/tech.toolpack.gradle/1password-plugin
 //    implementation("tech.toolpack.gradle:1password-plugin:1.0.0")
+
+    // to be investigated later
+    //  https://github.com/RohanNagar/op-connect-sdk-java?tab=readme-ov-file
+    // https://mvnrepository.com/artifact/com.sanctionco.opconnect/opconnect-java
+//    implementation("com.sanctionco.opconnect:opconnect-java:0.6.2")
 }
 
 compileJava.options.release = 17
