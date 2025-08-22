@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <withJansi>true</withJansi>
+        <withJansi>false</withJansi>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>${CONSOLE_LOG_THRESHOLD}</level>
         </filter>
@@ -20,7 +20,7 @@
     <springProfile name="development">
         <logger name="StackTrace" level="ERROR" additivity="false" />
 
-<!--        <logger name="com.arjang" level="DEBUG"/>-->
+<!--        <logger name="Test38" level="DEBUG"/>-->
 
 <!--        <logger name="org.hibernate.SQL" level="DEBUG"/>-->
 <!--        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>-->
