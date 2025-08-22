@@ -1,4 +1,4 @@
-# **Grails 7.0.0.M4**
+# **Grails 7.0.0-RC1**
 Just fast and helpful notes. 
 
 ### Command Lines
