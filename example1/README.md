@@ -1,5 +1,4 @@
-# **Grails 7.0.0-RC1**
-Just fast and helpful notes. 
+# Grails 7.0.0-RC1 - Useful Notes
 
 ### Command Lines
 Build war files

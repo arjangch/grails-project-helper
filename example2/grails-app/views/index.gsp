@@ -93,10 +93,13 @@
                         <g:link controller="employee" action="createNewSession">Create New Session</g:link> (( Works but cannot add new Employee to second-DB ))
                     </li>
                     <li class="controller">
-                        <g:link controller="employee" action="usingSession">Using Session</g:link> (( This will throw Exception ))
+                        <g:link controller="employee" action="listWithNewSession">list With New Session</g:link> (( Works ))
                     </li>
                     <li class="controller">
-                        <g:link controller="employee" action="justCallObject">Just Call The Object</g:link> (( This will throw Exception ))
+                        <g:link controller="employee" action="usingSession">Using Session</g:link> (( Works ))
+                    </li>
+                    <li class="controller">
+                        <g:link controller="employee" action="justCallObject">Just Call The Object</g:link> (( Works ))
                     </li>
                 </ul>
             </div>

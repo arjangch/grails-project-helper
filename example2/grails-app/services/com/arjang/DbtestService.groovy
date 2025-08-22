@@ -23,17 +23,24 @@ class DbtestService {
     }
 
     def createNewSession(){
-        // This works
+        // Doesn't work
         Employee.withNewSession { session ->
-            // cannot add Employee with new session.
-//            def oneemployee = new Employee(name: "Louis3", lastname: "mandy3", employeeId: 3333, employeeNotes: "my 3 3").save(flush: true, failOnError: true)
-            log.info '-2.2--='+Employee.list()
+            // cannot add Employee with new session into 2nd db.
+            def oneemployee = new Employee(name: "Louis3", lastname: "mandy3", employeeId: 3333, employeeNotes: "my 3 3").save(flush: true, failOnError: true)
         }
         return "back from createNewSession"
     }
 
+    def listWithNewSession(){
+        // This work
+        Employee.withNewSession { session ->
+            log.info '-2.2--='+Employee.list()
+        }
+        return "back from listWithNewSession"
+    }
+
     def usingSession(){
-        // This doesn't work
+        // This work
         Employee.withSession { session ->
             log.info '-3.2--='+Employee.list()
         }
@@ -41,7 +48,7 @@ class DbtestService {
     }
 
     def justCallObject(){
-        // this doesn't work
+        // this work
         log.info '-4.2-=' + Employee.list()
         return "back from justCallObject"
     }

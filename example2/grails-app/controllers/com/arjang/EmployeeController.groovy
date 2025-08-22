@@ -27,6 +27,11 @@ class EmployeeController {
         redirect(uri: "/")
     }
 
+    def listWithNewSession() {
+        log.info '-2--='+ dbtestService.listWithNewSession()
+        redirect(uri: "/")
+    }
+
     def usingSession() {
         log.info '-2--='+ dbtestService.usingSession()
         redirect(uri: "/")
