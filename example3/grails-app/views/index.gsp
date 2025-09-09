@@ -96,7 +96,7 @@
     </ol>
     <h2>Bugs:</h2>
     <ol>
-        <li> <a href="http://localhost:8083/example3/teacher/showRenderJsonBad">One teacher as JSON</a> </li>
+        <li> <a href="http://localhost:8083/example3/student/showRenderJsonBad">Students as JSON</a> </li>
     </ol>
 </div>
 </div>

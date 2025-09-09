@@ -46,11 +46,11 @@ class StudentController {
      * @return
      */
     def showRenderJson() {
-        def teachersList = Teacher.findAll()
+        def studentList = Student.findAll()
         render(contentType: "application/json") {
-            Teachers {
-                for (t in teachersList) {
-                    Teacher(name: t.name, lastname: t.lastname)
+            Students {
+                for (t in studentList) {
+                    Student(name: t.name, lastname: t.lastname)
                 }
             }
         }
@@ -61,11 +61,11 @@ class StudentController {
      * @return
      */
     def showRenderXml() {
-        def teachers = Teacher.findAll()
+        def studentList = Student.findAll()
         render(contentType: "text/xml") {
-            teachersList {
-                for (t in teachers) {
-                    Teacher(name: t.name, lastname: t.lastname)
+            students {
+                for (t in studentList) {
+                    student(name: t.name, lastname: t.lastname)
                 }
             }
         }
@@ -82,7 +82,20 @@ class StudentController {
     }
 
 
-
+    /**
+     *  Doc https://docs.grails.org/latest/ref/Controllers/render.html
+     * @return
+     */
+    def showRenderJsonBad() {
+        def student = Student.findAll()
+        render(contentType: "application/json") {
+            student {
+                for (t in student) {
+                    student (name: t.name, lastname: t.lastname)
+                }
+            }
+        }
+    }
 
     def create() {
         respond new Student(params)
