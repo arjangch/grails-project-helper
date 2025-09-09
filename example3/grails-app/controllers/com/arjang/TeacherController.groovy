@@ -14,6 +14,21 @@ class TeacherController {
         respond teacherService.list(params), model:[teacherCount: teacherService.count()]
     }
 
+    /**
+     *  Doc https://docs.grails.org/latest/ref/Controllers/render.html
+     * @return
+     */
+    def showRenderJsonBad() {
+        def teachers = Teacher.findAll()
+        render(contentType: "application/json") {
+            teachers {
+                for (t in teachers) {
+                    teacher(name: t.name, lastname: t.lastname)
+                }
+            }
+        }
+    }
+
     def show(Long id) {
         respond teacherService.get(id)
     }

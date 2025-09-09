@@ -48,6 +48,7 @@
     </li>
 </content>
 
+
 <div class="svg" role="presentation">
     <div class="bg-dark-subtle text-center">
         <asset:image src="grails-cupsonly-logo-white.svg" class="w-50"/>
@@ -79,6 +80,27 @@
         </section>
     </div>
 </div>
+--
+<div class="container">
+
+<div id="controllers" role="navigation">
+    <h2>Examples:</h2>
+    <ol>
+        <li> <a href="http://localhost:8083/example3/student/showAsJson/2">One student as JSON</a> </li>
+        <li> <a href="http://localhost:8083/example3/student/showAsXml/2">One student as XML</a> </li>
+        <li> <a href="http://localhost:8083/example3/student/showRenderJson/2">One student render JSON</a> </li>
+        <li> <a href="http://localhost:8083/example3/student/showRenderXml/2">One student render XML</a> </li>
+        <li>Add student:
+            <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
+        </li>
+    </ol>
+    <h2>Bugs:</h2>
+    <ol>
+        <li> <a href="http://localhost:8083/example3/teacher/showRenderJsonBad">One teacher as JSON</a> </li>
+    </ol>
+</div>
+</div>
+
 
 </body>
 </html>

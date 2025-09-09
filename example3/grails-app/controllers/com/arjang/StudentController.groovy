@@ -41,11 +41,11 @@ class StudentController {
     }
 
     /**
-     * curl http://localhost:8083/example3/student/showAsJson2
+     * curl http://localhost:8083/example3/student/showRenderJson
      * https://docs.grails.org/latest/ref/Controllers/render.html
      * @return
      */
-    def showAsJson2() {
+    def showRenderJson() {
         def teachersList = Teacher.findAll()
         render(contentType: "application/json") {
             Teachers {
@@ -60,7 +60,7 @@ class StudentController {
      * curl http://localhost:8083/example3/student/showAsXml2
      * @return
      */
-    def showAsXml2() {
+    def showRenderXml() {
         def teachers = Teacher.findAll()
         render(contentType: "text/xml") {
             teachersList {
@@ -80,6 +80,9 @@ class StudentController {
         studentService.save(student)
         redirect(uri: "/")
     }
+
+
+
 
     def create() {
         respond new Student(params)
