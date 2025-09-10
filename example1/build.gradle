@@ -80,7 +80,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
 }
 
-compileJava.options.release = 17
+compileJava.options.release = 24
 
 tasks.withType(Test) {
     useJUnitPlatform()
