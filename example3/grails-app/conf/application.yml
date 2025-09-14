@@ -109,6 +109,15 @@ dataSource:
     password: ''
     pooled: true
     jmxExport: true
+
+exampleUser:
+    adminUser: admin
+    adminPwd: admin
+    supportUser: support
+    supportPwd: support
+    readOnlyUser: readonly
+    readOnlyPwd: readonly
+
 environments:
     development:
         logging.level.com.arjang: INFO

@@ -3,10 +3,10 @@ buildscript {
         mavenCentral()
         maven { url "https://repo.grails.org/grails/restricted" }
         maven {
-           url = 'https://repository.apache.org/content/groups/snapshots'
-           content {
-              includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-           }
+            url = 'https://repository.apache.org/content/groups/snapshots'
+            content {
+                includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
+            }
         }
     }
     dependencies {
@@ -20,21 +20,21 @@ buildscript {
 version "0.1"
 group = "com.arjang"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"war"
-apply plugin:"org.apache.grails.gradle.grails-web"
-apply plugin:"cloud.wondrify.asset-pipeline"
-apply plugin:"org.apache.grails.gradle.grails-gsp"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "war"
+apply plugin: "org.apache.grails.gradle.grails-web"
+apply plugin: "cloud.wondrify.asset-pipeline"
+apply plugin: "org.apache.grails.gradle.grails-gsp"
 
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/restricted" }
     maven {
-       url = 'https://repository.apache.org/content/groups/snapshots'
-       content {
-          includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-       }
+        url = 'https://repository.apache.org/content/groups/snapshots'
+        content {
+            includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
+        }
     }
 }
 
@@ -74,30 +74,34 @@ dependencies {
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
 
-    // core login
-    // https://grails-plugins.github.io/grails-spring-security-core/
-    //https://grails.github.io/grails-spring-security-core/7.0.0-M1/index.html
-//    implementation 'org.grails.plugins:spring-security-core:7.0.0-M1'
-    // https://grails.github.io/grails-spring-security-core/6.0.x/index.html
-//    implementation 'org.grails.plugins:spring-security-core:6.0.3'
-    // then run in command line to create users
+    // core
+//    https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html
+    implementation 'org.apache.grails:grails-spring-security:7.0.0-RC2'
 
+    // TODO Upgrade to Grails 7
     // UI for spring security.
-    // https://grails-plugins.github.io/grails-spring-security-ui/latest/index.html
-    // implementation 'org.grails.plugins:spring-security-ui:4.0.0-RC1'
+    // https://apache.github.io/grails-spring-security/7.0.x/ui-plugin/guide/index.html
+    implementation 'org.apache.grails:grails-spring-security-ui:7.0.0-RC2'
 
+
+
+    // TODO I am not sure if we are going to use this.
+    // implementation "org.grails.plugins:quartz-config-scheduler:4.0.0"
+
+    // TODO Upgrade to Grails 7
     // https://github.com/alvarosanchez/grails-spring-security-rest
     //https://grails-plugins.github.io/grails-spring-security-rest/3.0.1/docs/index.html
-    // implementation "org.grails.plugins:spring-security-rest:3.0.1"
+//    implementation "org.grails.plugins:spring-security-rest:3.0.1"
 
+    // TODO Upgrade to Grails 7
     // Jasypt is a java library which allows the developer to add basic encryption capabilities to
     // projects with minimum effort, and without the need of having deep knowledge on how cryptography works.
     // http://www.jasypt.org/
     // https://github.com/dtanner/grails-jasypt
-    // implementation "org.tros:jasypt-encryption:4.0.4"
+//    implementation "org.tros:jasypt-encryption:4.0.4"
 }
 
-compileJava.options.release = 17
+compileJava.options.release = 21
 
 tasks.withType(Test) {
     useJUnitPlatform()

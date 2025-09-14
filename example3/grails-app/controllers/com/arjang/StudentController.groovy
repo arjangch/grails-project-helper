@@ -4,7 +4,9 @@ import grails.converters.JSON
 import grails.converters.XML
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['permitAll'])
 class StudentController {
 
     StudentService studentService
@@ -18,6 +20,10 @@ class StudentController {
 
     def show(Long id) {
         respond studentService.get(id)
+    }
+
+    def testRender(){
+        render "Hello, Congratulations for your first Grails application!"
     }
 
     /**
