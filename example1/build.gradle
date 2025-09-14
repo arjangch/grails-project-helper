@@ -3,10 +3,10 @@ buildscript {
         mavenCentral()
         maven { url "https://repo.grails.org/grails/restricted" }
         maven {
-           url = 'https://repository.apache.org/content/groups/snapshots'
-           content {
-              includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-           }
+            url = 'https://repository.apache.org/content/groups/snapshots'
+            content {
+                includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
+            }
         }
     }
     dependencies {
@@ -20,35 +20,33 @@ buildscript {
 version "0.1"
 group = "com.arjang"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"war"
-apply plugin:"org.apache.grails.gradle.grails-web"
-apply plugin:"cloud.wondrify.asset-pipeline"
-apply plugin:"org.apache.grails.gradle.grails-gsp"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "war"
+apply plugin: "org.apache.grails.gradle.grails-web"
+apply plugin: "cloud.wondrify.asset-pipeline"
+apply plugin: "org.apache.grails.gradle.grails-gsp"
 
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/restricted" }
     maven {
-       url = 'https://repository.apache.org/content/groups/snapshots'
-       content {
-          includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-       }
+        url = 'https://repository.apache.org/content/groups/snapshots'
+        content {
+            includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
+        }
     }
 }
 
 dependencies {
-    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
-    developmentOnly "org.springframework.boot:spring-boot-devtools" // Spring Boot DevTools may cause performance slowdowns or compatibility issues on larger applications
-    integrationTestImplementation testFixtures("org.apache.grails:grails-geb")
     console "org.apache.grails:grails-console"
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
+    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter"
     implementation "org.apache.grails:grails-core"
-    implementation "org.apache.grails:grails-i18n"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "org.apache.grails:grails-web-boot"
@@ -62,6 +60,7 @@ dependencies {
     implementation "org.apache.grails:grails-scaffolding"
     implementation "org.apache.grails:grails-data-hibernate5"
     implementation "org.apache.grails:grails-gsp"
+    integrationTestImplementation testFixtures("org.apache.grails:grails-geb")
     profile "org.apache.grails.profiles:web"
     runtimeOnly "org.fusesource.jansi:jansi"
     runtimeOnly "com.h2database:h2"
@@ -73,16 +72,15 @@ dependencies {
     testImplementation "org.apache.grails:grails-testing-support-datamapping"
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
-    testImplementation "org.spockframework:spock-core"
 
     // mysql 8
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     implementation 'mysql:mysql-connector-java:8.0.33'
 }
 
-compileJava.options.release = 24
+compileJava.options.release = 21
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
