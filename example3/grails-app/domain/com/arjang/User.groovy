@@ -1,5 +1,6 @@
 package com.arjang
 
+import grails.plugin.springsecurity.SpringSecurityService
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
@@ -9,26 +10,44 @@ import grails.compiler.GrailsCompileStatic
 @ToString(includes='username', includeNames=true, includePackage=false)
 class User implements Serializable {
 
-    private static final long serialVersionUID = 1
+	private static final long serialVersionUID = 1
 
-    String username
-    String password
-    boolean enabled = true
-    boolean accountExpired
-    boolean accountLocked
-    boolean passwordExpired
+	SpringSecurityService springSecurityService
 
-    Set<Role> getAuthorities() {
-        (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
-    }
+	String username
+	String password
+	boolean enabled = true
+	boolean accountExpired
+	boolean accountLocked
+	boolean passwordExpired
 
-    static constraints = {
-        password nullable: false, blank: false, password: true
-        username nullable: false, blank: false, unique: true
-    }
+	Set<Role> getAuthorities() {
+		(UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
+	}
 
-    static mapping = {
-        table name: '`user`'
-        password column: '`password`'
-    }
+	def beforeInsert() {
+		encodePassword()
+	}
+
+	def beforeUpdate() {
+		if (isDirty('password')) {
+			encodePassword()
+		}
+	}
+
+	protected void encodePassword() {
+		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+	}
+
+	static transients = ['springSecurityService']
+
+	static constraints = {
+		password nullable: false, blank: false, password: true
+		username nullable: false, blank: false, unique: true
+	}
+
+	static mapping = {
+	    table name: '`user`'
+		password column: '`password`'
+	}
 }

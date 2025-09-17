@@ -16,7 +16,7 @@ class BootStrap {
 
     def init = {
         addInitUsers()
-//        addInitAccess()
+        addInitAccess()
         addInitData()
     }
 
@@ -40,6 +40,26 @@ class BootStrap {
         if (!adminUser.authorities.contains(adminRole)) {
             UserRole.create adminUser, adminRole
         }
+
+        // support
+        def supportUser = User.findByUsername(grailsApplication.config.exampleUser.supportUser) ?: new User(
+                username: grailsApplication.config.exampleUser.supportUser,
+                password: grailsApplication.config.exampleUser.supportPwd,
+                enabled: true).save(failOnError: true)
+
+        if (!supportUser.authorities.contains(supportRole)) {
+            UserRole.create supportUser, supportRole
+        }
+
+        // readOnly
+        def readOnlyUser = User.findByUsername(grailsApplication.config.exampleUser.readOnlyUser) ?: new User(
+                username: grailsApplication.config.exampleUser.readOnlyUser,
+                password: grailsApplication.config.exampleUser.readOnlyPwd,
+                enabled: true).save(failOnError: true)
+
+        if (!readOnlyUser.authorities.contains(readonlyRole)) {
+            UserRole.create readOnlyUser, readonlyRole
+        }
     }
 
     @Transactional
@@ -60,13 +80,18 @@ class BootStrap {
                 '/buildinfo',
                 '/login/auth',
                 '/login/index',
-                '/logout/index',
-                '/api/login',
-                '/api/logout']) {
+                '/logout/index']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save(failOnError: true)
         }
 
         for (String url in [
+                '/login/index',
+                '/logout/index']) {
+            new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save(failOnError: true)
+        }
+
+        for (String url in [
+                '/h2-console/**',
                 '/teacher/**',
                 '/user/**',
                 '/role/**',
