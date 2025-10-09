@@ -31,7 +31,9 @@ grails.plugin.springsecurity.authority.className = 'com.arjang.Role'
 
 // Static Request Map
 // Uncomment if you want request map to be managed statically. Comment out DB Request Map
-//grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+
+// Issue https://github.com/apache/grails-spring-security/issues/1178
+// grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

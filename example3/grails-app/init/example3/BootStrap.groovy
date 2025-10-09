@@ -16,9 +16,9 @@ class BootStrap {
     ServletContext servletContext
 
     def init = {
-        addInitUsers()
-        addInitAccess()
-        addInitData()
+//        addInitUsers()
+//        addInitAccess()
+//        addInitData()
     }
 
     def destroy = {
