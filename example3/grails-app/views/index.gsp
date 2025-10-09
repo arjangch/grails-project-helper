@@ -94,7 +94,9 @@
 
         <h2>Bugs:</h2>
         <ol>
-            <li><a href="http://localhost:8083/example3/student/showRenderJsonBad" target="_blank">Students as JSON</a></li>
+            <li><a href="https://github.com/apache/grails-core/issues/15061#event-19725439887">Grails-doc, bug in render example #15061</a> Students as JSON <a href="http://localhost:8083/example3/student/showRenderJsonBad" target="_blank">here</a></li>
+            <li><a href="https://github.com/apache/grails-spring-security/issues/1178" target="_blank">Grails 7 - grails-spring-security Doc - Static Request Map #1178</a> securityConfigType = "InterceptUrlMap"</li>
+            <li><a href="https://github.com/apache/grails-spring-security/issues/1179" target="_blank">Grails7 Doc - Requestmap also need a className #1179</a></li>
         </ol>
 
         <h2>Docs:</h2>
