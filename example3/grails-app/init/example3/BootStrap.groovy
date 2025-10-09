@@ -2,6 +2,7 @@ package example3
 
 import com.arjang.Student
 import com.arjang.Teacher
+import com.arjang.Cars
 import jakarta.servlet.ServletContext
 import com.arjang.Role
 import com.arjang.User
@@ -71,22 +72,19 @@ class BootStrap {
                 '/index.gsp',
                 '/**/favicon.ico',
                 '/assets/**',
-                '/**/js/**',
-                '/**/css/**',
-                '/**/images/**',
-                '/**/fonts/**',
+                '/robots.txt',
                 '/alive',
-                '/robot.txt',
-                '/buildinfo',
                 '/login/auth',
                 '/login/index',
-                '/logout/index']) {
+                '/logout/index',
+                '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save(failOnError: true)
         }
 
         for (String url in [
                 '/login/index',
-                '/logout/index']) {
+                '/logout/index',
+                '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save(failOnError: true)
         }
 
@@ -102,8 +100,8 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save(failOnError: true)
         }
 
+        // Reload RequestMap changes
         springSecurityService.clearCachedRequestmaps()
-
 
     }
 
@@ -116,8 +114,12 @@ class BootStrap {
         new Teacher(name: "tName1", lastname: "tLastName1", teacherId: 911).save()
         new Teacher(name: "tName2", lastname: "tLastName2", teacherId: 922).save()
         new Teacher(name: "tName3", lastname: "tLastName3", teacherId: 933).save()
-    }
 
+        new Cars(name: "BMW", color: "Red", doors: "4").save()
+
+
+
+    }
 
 
 }

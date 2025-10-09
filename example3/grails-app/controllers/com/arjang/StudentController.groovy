@@ -6,7 +6,7 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['permitAll'])
+
 class StudentController {
 
     StudentService studentService
@@ -78,10 +78,10 @@ class StudentController {
     }
 
     /**
-     *  curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'
+     *  curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentAddedWithCurl", studentId:"999"}'
      */
     def addStudent() {
-        log.info "==JSON=" + request.JSON.name
+        log.info "==JSON=" + request.JSON.n
         def student = new Student(name:request.JSON.name)
         studentService.save(student)
         redirect(uri: "/")

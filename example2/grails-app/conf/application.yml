@@ -46,6 +46,10 @@ environments:
 
 ---
 grails:
+    transaction:
+        chainedTransactionManager:
+            enabled: true
+            blacklistPattern: '.*'
     mime:
         disable:
             accept:
@@ -62,22 +66,22 @@ grails:
             csv: text/csv
             form: application/x-www-form-urlencoded
             html:
-              - text/html
-              - application/xhtml+xml
+                - text/html
+                - application/xhtml+xml
             js: text/javascript
             json:
-              - application/json
-              - text/json
+                - application/json
+                - text/json
             multipartForm: multipart/form-data
             pdf: application/pdf
             rss: application/rss+xml
             text: text/plain
             hal:
-              - application/hal+json
-              - application/hal+xml
+                - application/hal+json
+                - application/hal+xml
             xml:
-              - text/xml
-              - application/xml
+                - text/xml
+                - application/xml
     urlmapping:
         cache:
             maxsize: 1000
@@ -109,58 +113,58 @@ dataSource:
     driverClassName: org.h2.Driver
 
 environments:
-  development:
-    logging.level.com.arjang: INFO
-    spring.h2.console.enabled: true
-    server:
-      port: 8082
-      servlet:
-        context-path: '/example2'
-    dataSource:
-      dbCreate: create-drop
-      username: 'adminExample2'
-      password: 'adminExample2'
-      url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-    dataSources:
-      myotherdb:
-        dbCreate: create-drop
-        username: 'adminSeconddb2'
-        password: 'adminSeconddb2'
-        url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-  test:
-    logging.level.com.arjang: INFO
-    spring.h2.console.enabled: true
-    dataSource:
-      dbCreate: create-drop
-      username: 'adminExample2'
-      password: 'adminExample2'
-      url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-    dataSources:
-      myotherdb:
-        dbCreate: create-drop
-        username: 'adminSeconddb2'
-        password: 'adminSeconddb2'
-        url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-  production:
-    dataSource:
-      dbCreate: none
-      url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-      properties:
-        jmxEnabled: true
-        initialSize: 5
-        maxActive: 50
-        minIdle: 5
-        maxIdle: 25
-        maxWait: 10000
-        maxAge: 600000
-        timeBetweenEvictionRunsMillis: 5000
-        minEvictableIdleTimeMillis: 60000
-        validationQuery: SELECT 1
-        validationQueryTimeout: 3
-        validationInterval: 15000
-        testOnBorrow: true
-        testWhileIdle: true
-        testOnReturn: false
-        jdbcInterceptors: ConnectionState
-        defaultTransactionIsolation: 2
+    development:
+        logging.level.com.arjang: INFO
+        spring.h2.console.enabled: true
+        server:
+            port: 8082
+            servlet:
+                context-path: '/example2'
+        dataSource:
+            dbCreate: create-drop
+            username: 'adminExample2'
+            password: 'adminExample2'
+            url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+        dataSources:
+            myotherdb:
+                dbCreate: create-drop
+                username: 'adminSeconddb2'
+                password: 'adminSeconddb2'
+                url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    test:
+        logging.level.com.arjang: INFO
+        spring.h2.console.enabled: true
+        dataSource:
+            dbCreate: create-drop
+            username: 'adminExample2'
+            password: 'adminExample2'
+            url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+        dataSources:
+            myotherdb:
+                dbCreate: create-drop
+                username: 'adminSeconddb2'
+                password: 'adminSeconddb2'
+                url: jdbc:h2:mem:secondDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    production:
+        dataSource:
+            dbCreate: none
+            url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            properties:
+                jmxEnabled: true
+                initialSize: 5
+                maxActive: 50
+                minIdle: 5
+                maxIdle: 25
+                maxWait: 10000
+                maxAge: 600000
+                timeBetweenEvictionRunsMillis: 5000
+                minEvictableIdleTimeMillis: 60000
+                validationQuery: SELECT 1
+                validationQueryTimeout: 3
+                validationInterval: 15000
+                testOnBorrow: true
+                testWhileIdle: true
+                testOnReturn: false
+                jdbcInterceptors: ConnectionState
+                defaultTransactionIsolation: 2
 

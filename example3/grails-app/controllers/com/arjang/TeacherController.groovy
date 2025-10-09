@@ -14,8 +14,6 @@ class TeacherController {
         respond teacherService.list(params), model:[teacherCount: teacherService.count()]
     }
 
-
-
     def show(Long id) {
         respond teacherService.get(id)
     }

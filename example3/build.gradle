@@ -83,10 +83,6 @@ dependencies {
     implementation 'org.apache.grails:grails-spring-security-ui:7.0.0-RC2'
 
 
-
-    // TODO I am not sure if we are going to use this.
-    // implementation "org.grails.plugins:quartz-config-scheduler:4.0.0"
-
     // TODO Upgrade to Grails 7
     // https://github.com/alvarosanchez/grails-spring-security-rest
     //https://grails-plugins.github.io/grails-spring-security-rest/3.0.1/docs/index.html

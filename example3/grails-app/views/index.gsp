@@ -3,8 +3,9 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Grails Example 3</title>
 </head>
+
 <body>
 <content tag="nav">
     <li class="nav-item dropdown">
@@ -48,59 +49,74 @@
     </li>
 </content>
 
-
-<div class="svg" role="presentation">
-    <div class="bg-dark-subtle text-center">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="w-50"/>
-    </div>
-</div>
-
 <div id="content" role="main">
     <div class="container">
         <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
+            <h1>Grails Example 3</h1>
+
+            <p>In this example we learn different kind of permission access and REST access to data.</p>
 
             <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
+                <sec:ifNotLoggedIn>
+                    <li><a href="login/index">login</a></li>
+                </sec:ifNotLoggedIn>
+                <sec:ifLoggedIn>
+                    <g:form controller="logout" action="index" method="POST">
+                        <g:submitButton name="logout"/>
+                    </g:form>
+                </sec:ifLoggedIn>
             </p>
 
-            <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
-                <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
-                </ul>
-            </div>
         </section>
     </div>
 </div>
 --
 <div class="container">
 
-<div id="controllers" role="navigation">
-    <h2>Examples:</h2>
-    <ol>
-        <li> <a href="http://localhost:8083/example3/student/showAsJson/2">One student as JSON</a> </li>
-        <li> <a href="http://localhost:8083/example3/student/showAsXml/2">One student as XML</a> </li>
-        <li> <a href="http://localhost:8083/example3/student/showRenderJson/2">One student render JSON</a> </li>
-        <li> <a href="http://localhost:8083/example3/student/showRenderXml/2">One student render XML</a> </li>
-        <li>Add student:
-            <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
-        </li>
-    </ol>
-    <h2>Bugs:</h2>
-    <ol>
-        <li> <a href="http://localhost:8083/example3/student/showRenderJsonBad">Students as JSON</a> </li>
-    </ol>
-</div>
-</div>
+    <div id="controllers" role="navigation">
+        <h2>Examples:</h2>
+        <ol>
+            <li><a href="student" target="_blank">Student</a></li>
+            <li><a href="teacher" target="_blank">Teacher</a></li>
+            <li><a href="cars" target="_blank">Cars</a> Annotation <code>@Secured(['permitAll'])</code> on controller and methods will not work here. It is overwritten by RequestMap.</li>
+            <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
+                <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>
+            <li><a href="http://localhost:8083/example3/student/showAsXml/2" target="_blank">One student as XML</a> or with
+                <pre><code>curl  -i -X GET -H "Accept:application/xml" -H "Content-Type: application/xml" http://localhost:8083/example3/student/showAsXml/2</code></pre></li>
+            <li><a href="http://localhost:8083/example3/student/showRenderJson/2" target="_blank">One student render JSON</a></li>
+            <li><a href="http://localhost:8083/example3/student/showRenderXml/2" target="_blank">One student render XML</a></li>
+            <li>Add student: Url need to be added to POST in RequestMap.
+                <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
+            </li>
+            <li></li>
+            <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized. Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
+        </ol>
 
+        <h2>Bugs:</h2>
+        <ol>
+            <li><a href="http://localhost:8083/example3/student/showRenderJsonBad" target="_blank">Students as JSON</a></li>
+        </ol>
+
+        <h2>Docs:</h2>
+        <ol>
+            <li><a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html" target="_blank">Spring Security Core Plugin - Reference Documentation</a></li>
+            <li><a href="https://apache.github.io/grails-spring-security/7.0.x/ui-plugin/guide/index.html" target="_blank">Spring Security UI Plugin - Reference Documentation</a></li>
+            <li><a href=""></a></li>
+        </ol>
+    </div>
+
+    <div id="controllers" role="navigation">
+        <h2>Available Controllers:</h2>
+        <ul>
+            <li><a href="http://localhost:8083/example3/h2-console/" target="_blank">h2-console</a></li>
+            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
+                <li class="controller">
+                    <g:link controller="${c.logicalPropertyName}" target="_blank">${c.fullName}</g:link>
+                </li>
+            </g:each>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
