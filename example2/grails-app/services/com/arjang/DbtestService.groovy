@@ -22,6 +22,10 @@ class DbtestService {
         return "back from usingTransaction"
     }
 
+    /**
+     * See issue https://github.com/apache/grails-core/issues/14333#issuecomment-3378682981
+     * @return
+     */
     def createNewSession(){
         // Doesn't work
         Employee.withNewSession { session ->

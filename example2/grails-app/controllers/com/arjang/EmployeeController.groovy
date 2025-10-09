@@ -22,6 +22,10 @@ class EmployeeController {
         redirect(uri: "/")
     }
 
+    /**
+     * See this issue https://github.com/apache/grails-core/issues/14333#issuecomment-3378682981
+     * @return
+     */
     def createNewSession() {
         log.info '-2--='+ dbtestService.createNewSession()
         redirect(uri: "/")
