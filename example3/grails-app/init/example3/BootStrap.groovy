@@ -16,9 +16,9 @@ class BootStrap {
     ServletContext servletContext
 
     def init = {
-//        addInitUsers()
-//        addInitAccess()
-//        addInitData()
+        addInitUsers()
+        addInitAccess()
+        addInitData()
     }
 
     def destroy = {
@@ -77,6 +77,7 @@ class BootStrap {
                 '/login/auth',
                 '/login/index',
                 '/logout/index',
+                '/cars/**',
                 '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save(failOnError: true)
         }
@@ -84,6 +85,7 @@ class BootStrap {
         for (String url in [
                 '/login/index',
                 '/logout/index',
+                '/cars/**',
                 '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save(failOnError: true)
         }

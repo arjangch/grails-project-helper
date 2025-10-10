@@ -16,10 +16,10 @@ class CarsController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     /**
-     * This annotation will not work Requestmap Instances Stored in the Database. securityConfigType = 'Requestmap'.
-     * But it will work in conjunction with Static Map
+     *
      */
-    @Secured(['permitAll'])
+//    @Secured(['permitAll'])
+    @Secured("hasRole('ROLE_ADMIN')")
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond carsService.list(params), model:[carsCount: carsService.count()]

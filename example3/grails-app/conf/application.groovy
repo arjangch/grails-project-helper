@@ -26,38 +26,38 @@ grails.plugin.springsecurity.authority.className = 'com.arjang.Role'
 
 // DB Request Map
 // If you want Requestmap to be stored in DB Comment out static part
-//grails.plugin.springsecurity.requestMap.className = 'com.arjang.Requestmap'
-//grails.plugin.springsecurity.securityConfigType = 'Requestmap'
+// see issue https://github.com/apache/grails-spring-security/issues/1179
+grails.plugin.springsecurity.requestMap.className = 'com.arjang.Requestmap'
+grails.plugin.springsecurity.securityConfigType = 'Requestmap'
 
 // Static Request Map
 // Uncomment if you want request map to be managed statically. Comment out DB Request Map
-
 // Issue https://github.com/apache/grails-spring-security/issues/1178
 // grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
-	[pattern: '/error',          access: ['permitAll']],
-	[pattern: '/index',          access: ['permitAll']],
-	[pattern: '/index.gsp',      access: ['permitAll']],
-	[pattern: '/shutdown',       access: ['permitAll']],
-	[pattern: '/assets/**',      access: ['permitAll']],
-    [pattern: '/login',          access: ['permitAll']],
-    [pattern: '/login/**',       access: ['permitAll']],
-    [pattern: '/logout',         access: ['permitAll']],
-    [pattern: '/logout/**',      access: ['permitAll']],
-	[pattern: '/h2-console/**', access: ['ROLE_ADMIN']],
-	[pattern: '/student/**', access: ['permitAll']],
-	[pattern: '/teacher/**', access: ['ROLE_ADMIN']]
-]
-
-grails.plugin.springsecurity.filterChain.chainMap = [
-	[pattern: '/assets/**',      filters: 'none'],
-	[pattern: '/**/js/**',       filters: 'none'],
-	[pattern: '/**/css/**',      filters: 'none'],
-	[pattern: '/**/images/**',   filters: 'none'],
-	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'JOINED_FILTERS']
-]
+//grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+//	[pattern: '/',               access: ['permitAll']],
+//	[pattern: '/error',          access: ['permitAll']],
+//	[pattern: '/index',          access: ['permitAll']],
+//	[pattern: '/index.gsp',      access: ['permitAll']],
+//	[pattern: '/shutdown',       access: ['permitAll']],
+//	[pattern: '/assets/**',      access: ['permitAll']],
+//    [pattern: '/login',          access: ['permitAll']],
+//    [pattern: '/login/**',       access: ['permitAll']],
+//    [pattern: '/logout',         access: ['permitAll']],
+//    [pattern: '/logout/**',      access: ['permitAll']],
+//	[pattern: '/h2-console/**', access: ['ROLE_ADMIN']],
+//	[pattern: '/student/**', access: ['permitAll']],
+//	[pattern: '/cars/**', access: ['ROLE_ADMIN']],
+//	[pattern: '/teacher/**', access: ['ROLE_ADMIN']]
+//]
+//grails.plugin.springsecurity.filterChain.chainMap = [
+//	[pattern: '/assets/**',      filters: 'none'],
+//	[pattern: '/**/js/**',       filters: 'none'],
+//	[pattern: '/**/css/**',      filters: 'none'],
+//	[pattern: '/**/images/**',   filters: 'none'],
+//	[pattern: '/**/favicon.ico', filters: 'none'],
+//	[pattern: '/**',             filters: 'JOINED_FILTERS']
+//]
 
 // TODO:
 //grails.plugin.springsecurity.ipRestrictions = [

@@ -58,11 +58,11 @@
 
             <p>
                 <sec:ifNotLoggedIn>
-                    <li><a href="login/index">login</a></li>
+                    <a href="login/index">login</a>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <g:form controller="logout" action="index" method="POST">
-                        <g:submitButton name="logout"/>
+                        Your username is <sec:username/>. <g:submitButton name="logout"/>
                     </g:form>
                 </sec:ifLoggedIn>
             </p>
@@ -74,11 +74,12 @@
 <div class="container">
 
     <div id="controllers" role="navigation">
-        <h2>Examples:</h2>
+        <h2>Examples: </h2>
         <ol>
             <li><a href="student" target="_blank">Student</a></li>
             <li><a href="teacher" target="_blank">Teacher</a></li>
-            <li><a href="cars" target="_blank">Cars</a> Annotation <code>@Secured(['permitAll'])</code> on controller and methods will not work here. It is overwritten by RequestMap.</li>
+            <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car index only permitted with ROLE_ADMIN.
+            Other methods are permitAll. See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a> </li>
             <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
                 <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>
             <li><a href="http://localhost:8083/example3/student/showAsXml/2" target="_blank">One student as XML</a> or with
@@ -88,8 +89,9 @@
             <li>Add student: Url need to be added to POST in RequestMap.
                 <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
             </li>
+            <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized.
+                Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
             <li></li>
-            <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized. Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
         </ol>
 
         <h2>Bugs:</h2>
