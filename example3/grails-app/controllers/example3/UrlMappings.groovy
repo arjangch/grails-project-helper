@@ -10,6 +10,7 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
+        "/testSpringTags"(view:"/testSpringTags")
         "/alive"(view: "/alive")
         "500"(view:'/error')
         "403"(view:'/forbidden')

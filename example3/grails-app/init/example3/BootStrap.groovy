@@ -1,5 +1,6 @@
 package example3
 
+import com.arjang.Bikes
 import com.arjang.Student
 import com.arjang.Teacher
 import com.arjang.Cars
@@ -70,6 +71,7 @@ class BootStrap {
                 '/error',
                 '/index',
                 '/index.gsp',
+                '/testSpringTags',
                 '/**/favicon.ico',
                 '/assets/**',
                 '/robots.txt',
@@ -77,7 +79,6 @@ class BootStrap {
                 '/login/auth',
                 '/login/index',
                 '/logout/index',
-                '/cars/**',
                 '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save(failOnError: true)
         }
@@ -85,21 +86,31 @@ class BootStrap {
         for (String url in [
                 '/login/index',
                 '/logout/index',
-                '/cars/**',
                 '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save(failOnError: true)
         }
 
+        new Requestmap(url: "/cars", configAttribute: 'permitAll').save()
+        new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
+        new Requestmap(url: "/cars/edit/*",configAttribute: "ROLE_ADMIN").save()
+
+        new Requestmap(url: "/bikes", configAttribute: 'permitAll').save()
+        new Requestmap(url: "/bikes/show/*", configAttribute: "authentication.name == 'admin'").save()
+
         for (String url in [
                 '/h2-console/**',
-                '/teacher/**',
                 '/user/**',
                 '/role/**',
                 '/userRole/**',
                 '/registrationCode/**',
                 '/securityInfo/**',
                 '/requestmap/**']) {
-            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save(failOnError: true)
+            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN,ROLE_SUPPORT').save(failOnError: true)
+        }
+
+        for (String url in [
+                '/teacher/**']) {
+            new Requestmap(url: url, configAttribute: "hasRole('ROLE_ADMIN')").save(failOnError: true)
         }
 
         // Reload RequestMap changes
@@ -118,8 +129,12 @@ class BootStrap {
         new Teacher(name: "tName3", lastname: "tLastName3", teacherId: 933).save()
 
         new Cars(name: "BMW", color: "Red", doors: "4").save()
+        new Cars(name: "VW", color: "Blue", doors: "4").save()
+        new Cars(name: "Ford", color: "white", doors: "2").save()
 
-
+        new Bikes(brand: "CN", height: 17).save()
+        new Bikes(brand: "BNC", height: 21).save()
+        new Bikes(brand: "BB", height: 22).save()
 
     }
 

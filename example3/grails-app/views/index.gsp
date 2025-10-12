@@ -58,11 +58,11 @@
 
             <p>
                 <sec:ifNotLoggedIn>
-                    <a href="login/index">login</a>
+                    <g:link controller='login' action='auth'>Login</g:link>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <g:form controller="logout" action="index" method="POST">
-                        Your username is <sec:username/>. <g:submitButton name="logout"/>
+                        Your username is <b><sec:username/></b>. <br><g:submitButton name="logout"/>
                     </g:form>
                 </sec:ifLoggedIn>
             </p>
@@ -78,8 +78,10 @@
         <ol>
             <li><a href="student" target="_blank">Student</a></li>
             <li><a href="teacher" target="_blank">Teacher</a></li>
-            <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car index only permitted with ROLE_ADMIN.
-            Other methods are permitAll. See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a> </li>
+            <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car show is restricted to ROLE_SUPPORT and edit is restricted to ROLE_ADMIN.
+            See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a> </li>
+
+            <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin' </li>
             <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
                 <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>
             <li><a href="http://localhost:8083/example3/student/showAsXml/2" target="_blank">One student as XML</a> or with
@@ -97,8 +99,20 @@
         <h2>Bugs:</h2>
         <ol>
             <li><a href="https://github.com/apache/grails-core/issues/15061#event-19725439887">Grails-doc, bug in render example #15061</a> Students as JSON <a href="http://localhost:8083/example3/student/showRenderJsonBad" target="_blank">here</a></li>
+            <li><a href="https://github.com/apache/grails-spring-security/pull/1171" target="_blank"> Update installation.adoc #1171</a> </li>
+            <li><a href="https://github.com/apache/grails-spring-security/issues/1172" target="_blank">Grails 7 - s2-quickstart does not create Requestmap domain #1172</a> </li>
+            <li><a href="https://github.com/apache/grails-spring-security/issues/1173" target="_blank">Grails 7 - grails-spring-security Doc - default approch #1173</a> </li>
             <li><a href="https://github.com/apache/grails-spring-security/issues/1178" target="_blank">Grails 7 - grails-spring-security Doc - Static Request Map #1178</a> securityConfigType = "InterceptUrlMap"</li>
             <li><a href="https://github.com/apache/grails-spring-security/issues/1179" target="_blank">Grails7 Doc - Requestmap also need a className #1179</a></li>
+            <li><a href="https://github.com/apache/grails-spring-security/issues/1181" target="_blank">Grails 7 - grails-spring-security Doc - interceptUrlMap #1181</a> </li>
+            <li><a href="https://github.com/apache/grails-core/issues/13668" target="_blank">Grails 7: i18n file changes throws exception #13668</a> </li>
+            <li><a href="https://github.com/apache/grails-core/issues/13705" target="_blank">Grails 7: Cannot get environment name with grails.util.Metadata.current.getEnvironment() #13705</a> </li>
+            <li><a href="https://github.com/apache/grails-core/issues/13669" target="_blank">Controller hotswap change doesn't take effect.  #13669</a> </li>
+            <li><a href="https://github.com/apache/grails-core/issues/14333" target="_blank">Grails7 - Multi DB withSession does not work #14333
+            <li><a href="https://github.com/apache/grails-core/issues/15061" target="_blank">Grails-doc, bug in render example #15061</a> </li>
+
+            </a> </li>
+            <li><a href="" target="_blank"></a> </li>
         </ol>
 
         <h2>Docs:</h2>
@@ -111,6 +125,7 @@
 
     <div id="controllers" role="navigation">
         <h2>Available Controllers:</h2>
+
         <ul>
             <li><a href="http://localhost:8083/example3/h2-console/" target="_blank">h2-console</a></li>
             <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
@@ -119,6 +134,7 @@
                 </li>
             </g:each>
         </ul>
+
     </div>
 </div>
 
