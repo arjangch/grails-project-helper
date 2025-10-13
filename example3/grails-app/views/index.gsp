@@ -93,6 +93,7 @@
             </li>
             <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized.
                 Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
+            <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
             <li></li>
         </ol>
 

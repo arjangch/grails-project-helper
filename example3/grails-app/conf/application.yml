@@ -117,6 +117,8 @@ exampleUser:
     supportPwd: support
     readOnlyUser: readonly
     readOnlyPwd: readonly
+    supervisorUser: supervisor
+    supervisorPwd: supervisor
 
 environments:
     development:

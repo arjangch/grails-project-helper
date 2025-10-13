@@ -32,6 +32,7 @@ class BootStrap {
         def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
         def supportRole = Role.findByAuthority('ROLE_SUPPORT') ?: new Role(authority: 'ROLE_SUPPORT').save(failOnError: true)
         def readonlyRole = Role.findByAuthority('ROLE_READONLY') ?: new Role(authority: 'ROLE_READONLY').save(failOnError: true)
+        def supervisorRole = Role.findByAuthority('ROLE_SUPERVISOR') ?: new Role(authority: 'ROLE_SUPERVISOR').save(failOnError: true)
 
         // admin
         def adminUser = User.findByUsername(grailsApplication.config.exampleUser.adminUser) ?: new User(
@@ -62,6 +63,17 @@ class BootStrap {
         if (!readOnlyUser.authorities.contains(readonlyRole)) {
             UserRole.create readOnlyUser, readonlyRole
         }
+
+        def supervisorUser = User.findByUsername(grailsApplication.config.exampleUser.supervisorUser) ?: new User(
+                username: grailsApplication.config.exampleUser.supervisorUser,
+                password: grailsApplication.config.exampleUser.supervisorPwd,
+                enabled: true).save(failOnError: true)
+
+//        if (!supervisorUser.authorities.contains(supervisorRole)) {
+//            UserRole.create supervisorUser, supervisorRole
+//            UserRole.create supervisorUser, supportRole
+//        }
+
     }
 
     @Transactional
