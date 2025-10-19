@@ -95,12 +95,17 @@
             Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
             <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
 
-            <sec:ifAllGranted roles='ROLE_ADMIN'>
+            <sec:ifAllGranted roles='ROLE_SWITCH_USER'>
                 <li>Switch to another user <form action='/example3/login/impersonate' method='POST'>
                     Switch to user: <input type='text' name='username' value="support"/> <br/>
                     <input type='submit' value='Switch'/>
                 </form></li>
             </sec:ifAllGranted>
+            <sec:ifSwitched>
+                <li><form action='${request.contextPath}/logout/impersonate' method='POST'>
+                    <input type='submit' value="Resume as ${grails.plugin.springsecurity.SpringSecurityUtils.switchedUserOriginalUsername}"/>
+                </form></li>
+            </sec:ifSwitched>
         </ol>
 
         <h2>Docs:</h2>

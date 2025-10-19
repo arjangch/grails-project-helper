@@ -19,6 +19,8 @@ grails.plugin.springsecurity.rememberMe.parameter='remember-me'
 grails.plugin.springsecurity.rememberMe.useSecureCookie=true
 grails.plugin.springsecurity.rememberMe.createSessionOnSuccess=true
 
+grails.plugin.springsecurity.useSwitchUserFilter=true
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.arjang.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.arjang.UserRole'
