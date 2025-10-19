@@ -76,8 +76,8 @@
     <div id="controllers" role="navigation">
         <h2>Examples:</h2>
         <ol>
-            <li><a href="student" target="_blank">Student</a></li>
-            <li><a href="teacher" target="_blank">Teacher</a></li>
+            <li><a href="student" target="_blank">Student.</a> permitAll access.</li>
+            <li><a href="teacher" target="_blank">Teacher.</a> ROLE_ADMIN access.</li>
             <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car show is restricted to ROLE_SUPPORT and edit is restricted to ROLE_ADMIN.
             See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a></li>
 
