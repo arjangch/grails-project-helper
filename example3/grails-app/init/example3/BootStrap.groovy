@@ -108,15 +108,20 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save()
         }
 
-        new Requestmap(url: "/cars", configAttribute: 'permitAll').save()
-        new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
-        new Requestmap(url: "/cars/edit/*", configAttribute: "ROLE_ADMIN").save()
+        for (String url in[
+                "/bikes",
+                "/cars",
+                "/login/authfail"
+        ]){
+            new Requestmap(url: url, configAttribute: 'permitAll').save()
+        }
 
-        new Requestmap(url: "/bikes", configAttribute: 'permitAll').save()
+        // different way of adding permission.
+        // also it removes show from permitAll
         new Requestmap(url: "/bikes/show/*", configAttribute: "authentication.name == 'admin'").save()
 
         for (String url in [
-                '/login/impersonate']){ new Requestmap(url: url ,configAttribute: 'ROLE_ADMIN,ROLE_SWITCH_USER').save()
+                '/login/impersonate']){ new Requestmap(url: url ,configAttribute: 'ROLE_SWITCH_USER,IS_AUTHENTICATED_FULLY').save()
         }
 
         for (String url in [
@@ -126,14 +131,13 @@ class BootStrap {
                 '/userRole/**',
                 '/registrationCode/**',
                 '/securityInfo/**',
-                '/requestmap/**']) {
-            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN,ROLE_SUPPORT').save()
+                '/requestmap/**',
+                '/teacher/**',
+                "/cars/edit/*"]) {
+            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save()
         }
 
-        for (String url in [
-                '/teacher/**']) {
-            new Requestmap(url: url, configAttribute: "hasRole('ROLE_ADMIN')").save()
-        }
+        new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
 
         // Reload RequestMap changes
         springSecurityService.clearCachedRequestmaps()

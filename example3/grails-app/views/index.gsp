@@ -93,7 +93,7 @@
             </li>
             <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized.
             Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
-            <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
+
 
             <sec:ifAllGranted roles='ROLE_SWITCH_USER'>
                 <li>Switch to another user <form action='/example3/login/impersonate' method='POST'>
@@ -106,6 +106,8 @@
                     <input type='submit' value="Resume as ${grails.plugin.springsecurity.SpringSecurityUtils.switchedUserOriginalUsername}"/>
                 </form></li>
             </sec:ifSwitched>
+            <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
+            <li></li>
         </ol>
 
         <h2>Docs:</h2>

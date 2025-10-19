@@ -78,13 +78,35 @@ Testing Spring Security Tags.
         <td></td>
     </tr>
     <tr>
+        <td>switched User Original Username</td>
+        <td>${grails.plugin.springsecurity.SpringSecurityUtils.switchedUserOriginalUsername}</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>sec:access If ROLE_SUPPORT</td>
+        <td>
+            <sec:access expression="hasRole('ROLE_SUPPORT')">You're a ROLE_SUPPORT</sec:access>
+        </td>
         <td></td>
+    </tr>
+    <tr>
+        <td>sec:access if allowed</td>
+        <td>
+            <sec:access url='/teacher/show'><g:link controller='teacher' action='show' id="1">teacher show</g:link></sec:access>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>If ROLE_ADMIN </td>
+        <td>
+            <sec:link controller='teacher' action='show' expression="hasRole('ROLE_ADMIN')">Teacher Show</sec:link>
+        </td>
         <td></td>
     </tr>
     <tr>
         <td></td>
-        <td></td>
+        <td>
+        </td>
         <td></td>
     </tr>
 
