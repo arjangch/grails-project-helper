@@ -34,6 +34,8 @@ class BootStrap {
         def readonlyRole = Role.findByAuthority('ROLE_READONLY') ?: new Role(authority: 'ROLE_READONLY').save(failOnError: true)
         def supervisorRole = Role.findByAuthority('ROLE_SUPERVISOR') ?: new Role(authority: 'ROLE_SUPERVISOR').save(failOnError: true)
 
+        def switchRole = Role.findByAuthority('ROLE_SWITCH_USER') ?: new Role(authority: 'ROLE_SWITCH_USER').save(failOnError: true)
+
         // admin
         def adminUser = User.findByUsername(grailsApplication.config.exampleUser.adminUser) ?: new User(
                 username: grailsApplication.config.exampleUser.adminUser,
@@ -42,6 +44,10 @@ class BootStrap {
 
         if (!adminUser.authorities.contains(adminRole)) {
             UserRole.create adminUser, adminRole
+        }
+
+        if (!adminUser.authorities.contains(switchRole)) {
+            UserRole.create adminUser, switchRole
         }
 
         // support
@@ -69,10 +75,10 @@ class BootStrap {
                 password: grailsApplication.config.exampleUser.supervisorPwd,
                 enabled: true).save(failOnError: true)
 
-//        if (!supervisorUser.authorities.contains(supervisorRole)) {
-//            UserRole.create supervisorUser, supervisorRole
-//            UserRole.create supervisorUser, supportRole
-//        }
+        if (!supervisorUser.authorities.contains(supervisorRole)) {
+            UserRole.create supervisorUser, supervisorRole
+            UserRole.create supervisorUser, supportRole
+        }
 
     }
 
@@ -104,10 +110,13 @@ class BootStrap {
 
         new Requestmap(url: "/cars", configAttribute: 'permitAll').save()
         new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
-        new Requestmap(url: "/cars/edit/*",configAttribute: "ROLE_ADMIN").save()
+        new Requestmap(url: "/cars/edit/*", configAttribute: "ROLE_ADMIN").save()
 
         new Requestmap(url: "/bikes", configAttribute: 'permitAll').save()
         new Requestmap(url: "/bikes/show/*", configAttribute: "authentication.name == 'admin'").save()
+
+        new Requestmap(url: '/login/impersonate',
+                configAttribute: 'ROLE_SWITCH_USER,ROLE_ADMIN').save(flush: true)
 
         for (String url in [
                 '/h2-console/**',

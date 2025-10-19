@@ -74,14 +74,14 @@
 <div class="container">
 
     <div id="controllers" role="navigation">
-        <h2>Examples: </h2>
+        <h2>Examples:</h2>
         <ol>
             <li><a href="student" target="_blank">Student</a></li>
             <li><a href="teacher" target="_blank">Teacher</a></li>
             <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car show is restricted to ROLE_SUPPORT and edit is restricted to ROLE_ADMIN.
-            See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a> </li>
+            See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a></li>
 
-            <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin' </li>
+            <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin'</li>
             <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
                 <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>
             <li><a href="http://localhost:8083/example3/student/showAsXml/2" target="_blank">One student as XML</a> or with
@@ -92,9 +92,15 @@
                 <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
             </li>
             <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized.
-                Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
+            Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
             <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
-            <li></li>
+
+            <sec:ifAllGranted roles='ROLE_ADMIN'>
+                <li>Switch to another user <form action='/example3/login/impersonate' method='POST'>
+                    Switch to user: <input type='text' name='username' value="support"/> <br/>
+                    <input type='submit' value='Switch'/>
+                </form></li>
+            </sec:ifAllGranted>
         </ol>
 
         <h2>Docs:</h2>
