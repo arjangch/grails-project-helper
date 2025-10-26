@@ -75,6 +75,7 @@
 
     <div id="controllers" role="navigation">
         <h2>Examples:</h2>
+        <p>For staticRules - in application.groovy uncomment section B. For DB Requestmap - in application.groovy uncomment section A.</p>
         <ol>
             <li><a href="student" target="_blank">Student.</a> permitAll access.</li>
             <li><a href="teacher" target="_blank">Teacher.</a> ROLE_ADMIN access.</li>
@@ -82,6 +83,7 @@
             See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a></li>
 
             <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin'</li>
+
             <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
                 <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>
             <li><a href="http://localhost:8083/example3/student/showAsXml/2" target="_blank">One student as XML</a> or with
@@ -92,13 +94,12 @@
                 <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/addStudent -d '{name:"studentA", studentId:"234"}'</code></pre>
             </li>
             <li>Static assets are located in <code>grails-app/assets</code>. Add subdirectories to keep things organized.
-            Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt">Robots.txt</a></li>
+            Make sure <code>/assets/**</code> is added to RequestMap. For example <a href="http://localhost:8083/example3/assets/robots.txt" target="_blank">Robots.txt</a></li>
 
 
             <sec:ifAllGranted roles='ROLE_SWITCH_USER'>
-                <li>Switch to another user <form action='/example3/login/impersonate' method='POST'>
-                    Switch to user: <input type='text' name='username' value="support"/> <br/>
-                    <input type='submit' value='Switch'/>
+                <li>Switch to another user: <form action='/example3/login/impersonate' method='POST'>
+                    Switch to user: <input type='text' name='username' value="support"/> <input type='submit' value='Switch'/>
                 </form></li>
             </sec:ifAllGranted>
             <sec:ifSwitched>
@@ -106,7 +107,9 @@
                     <input type='submit' value="Resume as ${grails.plugin.springsecurity.SpringSecurityUtils.switchedUserOriginalUsername}"/>
                 </form></li>
             </sec:ifSwitched>
-            <li><a href="http://localhost:8083/example3/testSpringTags">Testing Spring Security tags</a></li>
+            <li><a href="http://localhost:8083/example3/testSpringTags" target="_blank">Testing Spring Security tags</a></li>
+            <li>5.3. SpringSecurityUtils: <a href="bikes" target="_blank">See command line output.</a> </li>
+            <li></li>
             <li></li>
         </ol>
 

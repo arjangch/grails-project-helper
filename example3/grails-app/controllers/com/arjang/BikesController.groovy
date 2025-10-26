@@ -2,6 +2,7 @@ package com.arjang
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 class BikesController {
 
@@ -10,8 +11,10 @@ class BikesController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        log.info "---getPrincipalAuthorities-->>>" + SpringSecurityUtils.getPrincipalAuthorities()
+        log.info "---getSecurityConfig-->>>" + SpringSecurityUtils.getSecurityConfig()
         params.max = Math.min(max ?: 10, 100)
-        respond bikesService.list(params), model:[bikesCount: bikesService.count()]
+        respond bikesService.list(params), model: [bikesCount: bikesService.count()]
     }
 
     def show(Long id) {
@@ -31,7 +34,7 @@ class BikesController {
         try {
             bikesService.save(bikes)
         } catch (ValidationException e) {
-            respond bikes.errors, view:'create'
+            respond bikes.errors, view: 'create'
             return
         }
 
@@ -57,7 +60,7 @@ class BikesController {
         try {
             bikesService.save(bikes)
         } catch (ValidationException e) {
-            respond bikes.errors, view:'edit'
+            respond bikes.errors, view: 'edit'
             return
         }
 
@@ -66,7 +69,7 @@ class BikesController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'bikes.label', default: 'Bikes'), bikes.id])
                 redirect bikes
             }
-            '*'{ respond bikes, [status: OK] }
+            '*' { respond bikes, [status: OK] }
         }
     }
 
@@ -81,9 +84,9 @@ class BikesController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'bikes.label', default: 'Bikes'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -93,7 +96,7 @@ class BikesController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'bikes.label', default: 'Bikes'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

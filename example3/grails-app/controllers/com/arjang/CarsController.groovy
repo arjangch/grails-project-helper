@@ -18,11 +18,13 @@ class CarsController {
     /**
      *
      */
+//    @Secured(['permitAll'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond carsService.list(params), model:[carsCount: carsService.count()]
     }
 
+//    @Secured(['permitAll'])
     def show(Long id) {
         respond carsService.get(id)
     }

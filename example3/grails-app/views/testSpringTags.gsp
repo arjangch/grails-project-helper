@@ -92,14 +92,14 @@ Testing Spring Security Tags.
     <tr>
         <td>sec:access if allowed</td>
         <td>
-            <sec:access url='/teacher/show'><g:link controller='teacher' action='show' id="1">teacher show</g:link></sec:access>
+            <sec:access url='/teacher/show'><g:link controller='teacher' action='show' id="1">Teacher show</g:link></sec:access>
         </td>
         <td></td>
     </tr>
     <tr>
         <td>If ROLE_ADMIN </td>
         <td>
-            <sec:link controller='teacher' action='show' expression="hasRole('ROLE_ADMIN')">Teacher Show</sec:link>
+            <sec:link controller='teacher' action='show' expression="hasRole('ROLE_ADMIN')" id="1">Teacher Show</sec:link>
         </td>
         <td></td>
     </tr>
