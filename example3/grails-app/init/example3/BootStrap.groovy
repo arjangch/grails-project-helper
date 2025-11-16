@@ -96,6 +96,7 @@ class BootStrap {
                 '/assets/**',
                 '/robots.txt',
                 '/alive',
+                '/loginError',
                 '/student/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save()
         }

@@ -12,6 +12,7 @@ class UrlMappings {
         "/"(view:"/index")
         "/testSpringTags"(view:"/testSpringTags")
         "/alive"(view: "/alive")
+        "/loginError"(view: "/loginError")
         "500"(view:'/error')
         "403"(view:'/forbidden')
         "404"(view:'/notFound')

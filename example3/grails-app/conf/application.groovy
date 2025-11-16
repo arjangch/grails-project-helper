@@ -1,6 +1,11 @@
 // 12. URL Properties
-grails.plugin.springsecurity.apf.postOnly = false
+grails.plugin.springsecurity.apf.postOnly = true
 grails.plugin.springsecurity.logout.postOnly = true
+
+//grails.plugin.springsecurity.auth.loginFormUrl = "/login/auth"
+//grails.plugin.springsecurity.logout.afterLogoutUrl = "/login/auth"
+//grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/bikes"
+//grails.plugin.springsecurity.auth.forceHttps = true
 
 // overriding values in DefaultSecurityConfig.groovy from the SpringSecurityCore 2.0-RC4
 grails.plugin.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
@@ -37,6 +42,10 @@ grails.plugin.springsecurity.useSwitchUserFilter = true
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.arjang.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.arjang.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.arjang.Role'
+
+// 11. Password and Account Protection
+grails.plugin.springsecurity.password.algorithm = 'bcrypt'
+grails.plugin.springsecurity.password.bcrypt.logrounds = 15
 
 /* (A)
   DB Request Map
