@@ -75,12 +75,12 @@ dependencies {
 
     // core
 //    https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html
-    implementation 'org.apache.grails:grails-spring-security:7.0.0-RC2'
+    implementation 'org.apache.grails:grails-spring-security:7.0.1-SNAPSHOT'
 
     // TODO Upgrade to Grails 7
     // UI for spring security.
     // https://apache.github.io/grails-spring-security/7.0.x/ui-plugin/guide/index.html
-    implementation 'org.apache.grails:grails-spring-security-ui:7.0.0-RC2'
+    implementation 'org.apache.grails:grails-spring-security-ui:7.0.1-SNAPSHOT'
 
 
     // TODO Upgrade to Grails 7
