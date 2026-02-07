@@ -65,6 +65,20 @@ dependencies {
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
 
+    //    * quartz
+    // https://github.com/apache/grails-quartz?tab=readme-ov-file
+    // https://apache.github.io/grails-quartz/latest/guide/index.html
+    // implementation 'org.apache.grails:grails-quartz:4.0.0'
+
+    //     * quartz-config-scheduler
+    //  https://github.com/yakworks/quartz-config-scheduler
+    // compile "org.grails.plugins:quartz-config-scheduler:4.0.0"
+
+
+    //     * quartz-monitor
+    //  https://github.com/jamescookie/quartz-monitor
+
+
     // https://mvnrepository.com/artifact/com.github.anonymousmister.gradle.plugin/1password-plugin
 //    implementation("com.github.anonymousmister.gradle.plugin:1password-plugin:0.0.8")
 

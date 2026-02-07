@@ -3,7 +3,7 @@
 Purpose of this project is to help Grails bigginer. To show developer tips and tricks, plugin implementation,
 internal commands, config files, etc.
 
-## Grails 7.0.0-M1 Documentation
+## Grails 7.0.7 Documentation
 
 - [User Guide](https://docs.grails.org/7.0.0-M1/guide/index.html)
 - [API Reference](https://docs.grails.org/7.0.0-M1/api/index.html)
@@ -28,14 +28,13 @@ internal commands, config files, etc.
 
 
 ## Minimum System Requirements
-These projects are built with Grails 7 but sometime I will explain how it is done in older versions.
 
 | Tech   | Version |
-|--------|---------|
-| Java   | 17      |
-| gradle | 8       |
-| groovy | 4       |
-| Grails | 7       |
+|--------|-------|
+| Java   | 21.0.10-zulu |
+| gradle | 8     |
+| groovy | 4     |
+| Grails | 7     |
 
 #### java 24 Warning
 You can enable and disable warning using --enable-native-access and --illegal-native-access.
@@ -65,10 +64,10 @@ Essentially you can run multiple different versions in the same local environmen
 ```groovy
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
-java=21.0.8-zulu
-gradle=8.14.3
-groovy=4.0.28
-grails=7.0.0-RC1
+java=21.0.10-zulu
+gradle=8.14.4
+groovy=4.0.30
+grails=7.0.7
 ```
 
 ## Examples
@@ -77,8 +76,9 @@ Developers intention should be to learn from examples. Study the code and copy t
 Examples may not be runnable.
 
 - [Example1](example1/README.md): Basic Grails tips and tricks.
-- [Example2](example2/README.md): DataSources.
-- [Example3](example3/README.md): Create REST API.
-- [Example4](example4/README.md): Consume REST API. Example include connecting to Netsuite and Salesforce.
+- [Example2](example2/README.md): Multiple DataSources
+- [Example3](example3/README.md): Spring Seruciry Core and REST API.
+- [Example4](example4/README.md): Quartz Scheduler.
+- [Example5](example5/README.md): Consume REST API. Example include connecting to Netsuite, Salesforce, JIRA.
 
 
