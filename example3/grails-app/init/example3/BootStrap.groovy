@@ -1,9 +1,6 @@
 package example3
 
-import com.arjang.Bikes
-import com.arjang.Student
-import com.arjang.Teacher
-import com.arjang.Cars
+import com.arjang.*
 import jakarta.servlet.ServletContext
 import com.arjang.Role
 import com.arjang.User
@@ -18,8 +15,9 @@ class BootStrap {
 
     def init = {
         addInitUsers()
-        addInitAccess()
         addInitData()
+        addInitAccess()
+        domainAccess()
     }
 
     def destroy = {
@@ -96,30 +94,22 @@ class BootStrap {
                 '/assets/**',
                 '/robots.txt',
                 '/alive',
-                '/loginError',
-                '/student/**']) {
+                '/loginError']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'GET').save()
         }
 
         for (String url in [
                 '/login/index',
                 '/logout/index',
-                '/logout/impersonate',
-                '/student/**']) {
+                '/logout/impersonate']) {
             new Requestmap(url: url, configAttribute: 'permitAll', 'httpMethod': 'POST').save()
         }
 
         for (String url in[
-                "/bikes",
-                "/cars",
                 "/login/authfail"
         ]){
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
-
-        // different way of adding permission.
-        // also it removes show from permitAll
-        new Requestmap(url: "/bikes/show/*", configAttribute: "authentication.name == 'admin'").save()
 
         for (String url in [
                 '/login/impersonate']){ new Requestmap(url: url ,configAttribute: 'ROLE_SWITCH_USER,IS_AUTHENTICATED_FULLY').save()
@@ -132,16 +122,9 @@ class BootStrap {
                 '/userRole/**',
                 '/registrationCode/**',
                 '/securityInfo/**',
-                '/requestmap/**',
-                '/teacher/**',
-                "/cars/edit/*"]) {
+                '/requestmap/**']) {
             new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save()
         }
-
-        new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
-
-        // Reload RequestMap changes
-        springSecurityService.clearCachedRequestmaps()
 
     }
 
@@ -163,7 +146,68 @@ class BootStrap {
         new Bikes(brand: "BNC", height: 21).save()
         new Bikes(brand: "BB", height: 22).save()
 
+        new Suvs(name :"Taj", brand: "VW", color: "Blue").save()
+        new Suvs(name :"Despra", brand: "BMW", color: "Green").save()
+        new Suvs(name :"Fiest", brand: "Ford", color: "Black").save()
+        new Suvs(name :"Cool", brand: "BYD", color: "White").save()
     }
 
+    @Transactional
+    def domainAccess(){
+
+        for (String url in[
+                "/student/**"
+        ]){
+            new Requestmap(url: url, configAttribute: 'permitAll').save()
+        }
+
+        for (String url in[
+                "/bikes/**"
+        ]){
+            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save()
+        }
+
+        for (String url in[
+                "/teacher",
+                "/teacher/show/**"
+        ]){
+            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN,ROLE_SUPPORT').save()
+        }
+
+        for (String url in[
+                "/cars/show/**",
+                "/cars/edit/**",
+                "/cars/update/**",
+                "/cars/create/**"
+        ]){
+            new Requestmap(url: url, configAttribute: 'ROLE_SUPERVISOR').save()
+        }
+
+        for (String url in[
+                "/cars",
+                "/cars/index"
+        ]){
+            new Requestmap(url: url, configAttribute: 'ROLE_SUPPORT, ROLE_SUPERVISOR').save()
+        }
+
+        for (String url in[
+                "/suvs",
+                "/suvs/show/**"
+        ]){
+            new Requestmap(url: url, configAttribute: 'ROLE_READONLY').save()
+        }
+
+
+
+        // different way of adding permission.
+        // also it removes show from permitAll
+//         new Requestmap(url: "/bikes/show/*", configAttribute: "authentication.name == 'admin'").save()
+
+        // new Requestmap(url: "/cars/show/*", configAttribute: "hasRole('ROLE_SUPPORT')").save()
+
+        // Reload RequestMap changes
+        springSecurityService.clearCachedRequestmaps()
+
+    }
 
 }

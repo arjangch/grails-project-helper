@@ -49,12 +49,6 @@
     </li>
 </content>
 
-<div class="svg" role="presentation">
-    <div class="bg-dark-subtle text-center">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="w-50"/>
-    </div>
-</div>
-
 <div id="content" role="main">
     <div class="container">
         <section class="row colset-2-its">
@@ -81,14 +75,60 @@
 
     <div id="controllers" role="navigation">
         <h2>Examples:</h2>
-        <p>For staticRules - in application.groovy uncomment section B. For DB Requestmap - in application.groovy uncomment section A.</p>
+        <p>For staticRules - in application.groovy uncomment section B. For DB Requestmap - in application.groovy uncomment section A.
+        See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a></p>
         <ol>
-            <li><a href="student" target="_blank">Student.</a> permitAll access.</li>
-            <li><a href="teacher" target="_blank">Teacher.</a> ROLE_ADMIN access.</li>
-            <li><a href="cars" target="_blank">Cars</a> Testing finegrained control. In this example Car show is restricted to ROLE_SUPPORT and edit is restricted to ROLE_ADMIN.
-            See <a href="https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html#expressions" target="_blank">Doc</a></li>
+            <li><a href="student" target="_blank">Student.</a>
+                <ul>
+                    <li>No Login - permit all</li>
+                    <li>ROLE_ADMIN - permit all </li>
+                    <li>ROLE_SUPPORT - permit all</li>
+                    <li>ROLE_SUPERVISOR - permit all</li>
+                    <li>ROLE_READONLY - permit all</li>
+                </ul>
+            </li>
 
-            <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin'</li>
+            <li><a href="bikes" target="_blank">Bikes</a> Show is restricted by username authentication.name == 'admin'. Credentials =  admin  / admin
+                <ul>
+                    <li>No Login -  </li>
+                    <li>ROLE_ADMIN - Permit All</li>
+                    <li>ROLE_SUPPORT - </li>
+                    <li>ROLE_SUPERVISOR - </li>
+                    <li>ROLE_READONLY - </li>
+                </ul>
+            </li>
+
+            <li><a href="teacher" target="_blank">Teacher.</a> Credentials = support / support
+                <ul>
+                    <li>No Login - </li>
+                    <li>ROLE_ADMIN - List - Show</li>
+                    <li>ROLE_SUPPORT - List - Show</li>
+                    <li>ROLE_SUPERVISOR - </li>
+                    <li>ROLE_READONLY - </li>
+                </ul>
+            </li>
+
+            <li><a href="cars" target="_blank">Cars</a> Credentials = supervisor  / supervisor
+                <ul>
+                    <li>No Login - </li>
+                    <li>ROLE_ADMIN - </li>
+                    <li>ROLE_SUPPORT - List </li>
+                    <li>ROLE_SUPERVISOR - List - Show - Edit - Save</li>
+                    <li>ROLE_READONLY - </li>
+                </ul>
+            </li>
+
+            <li><a href="suvs" target="_blank">Suvs.</a> Credentials = readonly / readonly
+                <ul>
+                    <li>No Login - </li>
+                    <li>ROLE_ADMIN -</li>
+                    <li>ROLE_SUPPORT - </li>
+                    <li>ROLE_SUPERVISOR - </li>
+                    <li>ROLE_READONLY - List - Show </li>
+                </ul>
+            </li>
+
+            <li><a href="http://localhost:8083/example3/user/search" target="_blank">User Management</a></li>
 
             <li><a href="http://localhost:8083/example3/student/showAsJson/2" target="_blank">One student as JSON</a> or with
                 <pre><code>curl -i -X GET -H "Accept:application/json" -H "Content-Type: application/json" http://localhost:8083/example3/student/showAsJson/2</code></pre></li>

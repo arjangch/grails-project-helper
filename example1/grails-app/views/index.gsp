@@ -55,11 +55,7 @@
     </li>
 </content>
 
-<div class="svg" role="presentation">
-    <div class="bg-dark-subtle text-center">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="w-50"/>
-    </div>
-</div>
+
 
 <div id="content" role="main">
     <div class="container">

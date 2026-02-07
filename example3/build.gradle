@@ -1,12 +1,8 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url "https://repo.grails.org/grails/restricted" }
         maven {
-           url = 'https://repository.apache.org/content/groups/snapshots'
-           content {
-              includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-           }
+            url = 'https://repo.grails.org/grails/restricted'
         }
     }
     dependencies {
@@ -29,12 +25,8 @@ apply plugin:"org.apache.grails.gradle.grails-gsp"
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/restricted" }
     maven {
-       url = 'https://repository.apache.org/content/groups/snapshots'
-       content {
-          includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
-       }
+        url = 'https://repo.grails.org/grails/restricted'
     }
 }
 
@@ -75,12 +67,12 @@ dependencies {
 
     // core
 //    https://apache.github.io/grails-spring-security/7.0.x/core-plugin/guide/index.html
-    implementation 'org.apache.grails:grails-spring-security:7.0.1-SNAPSHOT'
+    implementation 'org.apache.grails:grails-spring-security:7.0.0'
 
     // TODO Upgrade to Grails 7
     // UI for spring security.
     // https://apache.github.io/grails-spring-security/7.0.x/ui-plugin/guide/index.html
-    implementation 'org.apache.grails:grails-spring-security-ui:7.0.1-SNAPSHOT'
+    implementation 'org.apache.grails:grails-spring-security-ui:7.0.0'
 
 
     // TODO Upgrade to Grails 7
@@ -100,6 +92,11 @@ compileJava.options.release = 21
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+// https://github.com/apache/grails-core/issues/15321
+tasks.withType(GroovyCompile).configureEach {
+    groovyOptions.optimizationOptions.indy = false
 }
 
 
