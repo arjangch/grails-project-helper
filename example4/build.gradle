@@ -24,7 +24,10 @@ apply plugin:"cloud.wondrify.asset-pipeline"
 apply plugin:"org.apache.grails.gradle.grails-gsp"
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    maven { url "https://repo.grails.org/grails/core/" }
+    maven { url "https://repository.apache.org/content/repositories/snapshots"}
     maven {
         url = 'https://repo.grails.org/grails/restricted'
     }
@@ -65,25 +68,40 @@ dependencies {
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
 
+//    // Quartz scheduler
+//// http://www.quartz-scheduler.org/api/2.3.0/index.html
+//// http://www.quartz-scheduler.org/documentation/quartz-2.3.0/
+//// http://www.quartz-scheduler.org/documentation/
+//// version 4 https://github.com/apache/grails-quartz?tab=readme-ov-file
+//    implementation("org.quartz-scheduler:quartz:2.3.2") {
+//        exclude group: 'slf4j-api', module: 'c3p0'
+//    }
+//// Quartz
+//// https://grails-plugins.github.io/grails-quartz/latest/
+//    implementation "org.grails.plugins:quartz:2.0.13"
+//
+//// Quartz monitor
+////https://github.com/jamescookie/quartz-monitor
+//    implementation('org.grails.plugins:quartz-monitor:1.3') {
+//        exclude group: 'org.grails.plugins', module: 'asset-pipeline'
+//    }
+
     //    * quartz
     // https://github.com/apache/grails-quartz?tab=readme-ov-file
     // https://apache.github.io/grails-quartz/latest/guide/index.html
-    // implementation 'org.apache.grails:grails-quartz:4.0.0'
 
-    //     * quartz-config-scheduler
-    //  https://github.com/yakworks/quartz-config-scheduler
-    // compile "org.grails.plugins:quartz-config-scheduler:4.0.0"
-
+     implementation 'org.apache.grails:grails-quartz:4.0.0'
 
     //     * quartz-monitor
     //  https://github.com/jamescookie/quartz-monitor
 
 
-    // https://mvnrepository.com/artifact/com.github.anonymousmister.gradle.plugin/1password-plugin
-//    implementation("com.github.anonymousmister.gradle.plugin:1password-plugin:0.0.8")
+// Source: https://mvnrepository.com/artifact/org.apache.grails/grails-quartz
+//    implementation("org.apache.grails:grails-quartz:4.0.0")
+//    implementation("org.grails.plugins:quartz-monitor:1.3"){
+//        exclude group: 'org.grails.plugins', module: 'asset-pipeline'
+//    }
 
-    // https://mvnrepository.com/artifact/tech.toolpack.gradle/1password-plugin
-//    implementation("tech.toolpack.gradle:1password-plugin:1.0.0")
 }
 
 compileJava.options.release = 21
